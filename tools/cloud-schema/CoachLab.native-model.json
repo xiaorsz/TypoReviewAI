@@ -1,0 +1,2012 @@
+{
+  "containerIdentifier" : "iCloud.cc.xiaorsz.dictation-coach-lab",
+  "entities" : [
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "aiSummaryEnabled",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "aiSummaryModelRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "boardAutoplayDurationMinutes",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "boardAutoplayEnabled",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "boardAutoplayEndHour",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "boardAutoplayEndMinute",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "boardAutoplaySkipChinaHolidays",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "boardAutoplaySkipWeekends",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "boardAutoplaySlotsRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "boardAutoplayStartHour",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "boardAutoplayStartMinute",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "boardManualPlaybackOptionRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "childName",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "dailyLimit",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "remindHour",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "remindMinute",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "reviewInteractionStyleRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "AppSettings",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "answersRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "correctCount",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "dayKey",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 500,
+          "attributeTypeName" : "Double",
+          "name" : "durationSeconds",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "generatorVersion",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "questionsRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "roundIndex",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "startedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "submittedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "CalculationRound",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "content",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "prompt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "resultRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "sessionID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "sortOrder",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "source",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "typeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "DictationEntry",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "currentEntryIndex",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "finishedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "reviewedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "scheduledDate",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "title",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "typeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "DictationSession",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isIncludedInPlaylist",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "mediaTypeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "originalFilename",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "playlistOrder",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "storageScopeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "storedFilename",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "title",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "MediaAsset",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "amount",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "idempotencyKey",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isReversal",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "kindRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "reversesEntryIDRawValue",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "sourceIDRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "sourceTypeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "PointLedgerEntry",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "currentStreak",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "lastActiveDay",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "longestStreak",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "PointRewardState",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "coachRationale",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "coachSubjectRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "dayKey",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "itemIDsRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "startedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "ReviewDailyPlan",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "consecutiveCorrectCount",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "consecutiveWrongCount",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "content",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "dictationFollowUpStep",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isDictationPassRaw",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isPriority",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "lastReviewedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "nextReviewAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "prompt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "reviewTrackRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "source",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "stage",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "typeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "ReviewItem",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "itemID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "modeRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "newStage",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "oldStage",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "resultRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "reviewedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "ReviewRecord",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "effectiveEndDate",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "effectiveStartDate",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "endTime",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isArchived",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "repeatRuleRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "startTime",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "title",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "weekdaysJSON",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "ScheduleItem",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "deletedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "entityType",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "recordID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "SyncDeletion",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "completedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "completedDate",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "taskID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "TaskCompletion",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "completedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "detail",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "occurrenceDate",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "statusRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "taskID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "TaskExecutionRecord",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "deadline",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "endDate",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isArchived",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "pauseIntervalsJSON",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "pauseStartedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "recurrenceJSON",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "skipPolicyRawValue",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "startDate",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "timingModeRawValue",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "title",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "TaskItem",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "completedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "detail",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 800,
+          "attributeTypeName" : "Bool",
+          "name" : "isArchived",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "note",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "parentTaskID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 300,
+          "attributeTypeName" : "Int64",
+          "name" : "sortOrder",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSNumber",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "statusRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "taskExecutionIDRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "title",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "TaskSubitem",
+      "relationships" : [
+
+      ]
+    },
+    {
+      "attributes" : [
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "completedAt",
+          "optional" : true,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "createdAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "detail",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "id",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 700,
+          "attributeTypeName" : "String",
+          "name" : "statusRawValue",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSString",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "subtaskID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 1100,
+          "attributeTypeName" : "UUID",
+          "name" : "taskExecutionID",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSUUID",
+          "valueTransformerName" : ""
+        },
+        {
+          "allowsCloudEncryption" : false,
+          "allowsExternalBinaryDataStorage" : false,
+          "attributeType" : 900,
+          "attributeTypeName" : "Date",
+          "name" : "updatedAt",
+          "optional" : false,
+          "transient" : false,
+          "valueClassName" : "NSDate",
+          "valueTransformerName" : ""
+        }
+      ],
+      "name" : "TaskSubitemExecutionRecord",
+      "relationships" : [
+
+      ]
+    }
+  ],
+  "source" : "NSManagedObjectModel.makeManagedObjectModel(for:)"
+}

@@ -1,0 +1,1085 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00332C1A9B9DD8574C0C2CD8 /* ReviewPlanningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1242BE40F2521ADB6DA209BF /* ReviewPlanningTests.swift */; };
+		048392B5F05578DA5095626E /* TaskDetailSupportViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F557F7DD5E032EF218E38DE /* TaskDetailSupportViews.swift */; };
+		0501EBD50638ABCE7A3A3575 /* HomeDashboardSnapshotLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A64A034FACE320F5E9A946C /* HomeDashboardSnapshotLoader.swift */; };
+		0606816AD69E2CB998514CA9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5345E94E2709DB1F09FC7AB6 /* Localizable.strings */; };
+		11C4727BEED95F07A6B7918F /* DataBackup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EB4C71F84AC43ED8F17BAD /* DataBackup.swift */; };
+		128BF905EF27FAB5D4EEAB7A /* ReviewPlanSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F2A6DF35ED253D6A03FB31 /* ReviewPlanSummaryView.swift */; };
+		12FABA946599929E85A8C3F1 /* ServerSyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EF4AA3115AC52C32DCA695 /* ServerSyncCoordinator.swift */; };
+		16B0413D82797367DCCCC802 /* ScheduleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8BCA87D68D1B12DF8C3AA /* ScheduleItem.swift */; };
+		192EC0A0317FAAFCE0A63B7B /* EnglishGlossService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119CF4EDA76FE3D311A4D85 /* EnglishGlossService.swift */; };
+		1EF677C751CCACFD58260A70 /* Grade5EnglishDictationPlanImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41732C355BA11369AC294A60 /* Grade5EnglishDictationPlanImporterTests.swift */; };
+		257D3C9D89FEABC4408E449B /* AICoachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BD47609AFCE434F78D8297 /* AICoachView.swift */; };
+		28E37D3C50307672032F8747 /* MediaLibraryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108ACE0BDED56C421728761B /* MediaLibraryStore.swift */; };
+		2ACB8BFF2520E549D56AF273 /* CloudSyncDiagnosticTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B871FA0A05C6E7673D1EDB5 /* CloudSyncDiagnosticTests.swift */; };
+		30FF0E45B1607B73DB35B942 /* AutoDictationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA89A7C546D6FD507F4A1B0 /* AutoDictationController.swift */; };
+		3359EF6DBEF73066D0F80C5C /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 561DDD91FFB960BCD744FBDC /* AppSettings.swift */; };
+		33C3399797BECC46167103A5 /* CoachInteractionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69CE180991F666D5BF18D07 /* CoachInteractionTests.swift */; };
+		351CF81F3AC800D7A40D5FB5 /* CoachCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0DEB77447F6965432D23A /* CoachCore.framework */; };
+		3675B575B660A3CC5D4F4122 /* DailySummaryAI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABC280E32143AE5F224000E /* DailySummaryAI.swift */; };
+		3CCCE001F0402243D1A31D5C /* MediaPlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A45BF4126DE313EEA34022 /* MediaPlaybackCoordinator.swift */; };
+		3E10FE4C0141885E9ED98B60 /* ReviewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BEC3432320DD6F19831FBF /* ReviewItem.swift */; };
+		403CB5CC7A7D2A9FAD62EF32 /* DailySummaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B21DE0619805EF33AEE8DF9 /* DailySummaryTests.swift */; };
+		41A7B910CDC1772D6EB9E7EE /* CloudStorageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901121872FF2B911A4125420 /* CloudStorageConfiguration.swift */; };
+		41B01CF7FC20947E89ECEF99 /* TaskSubitem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CAB16591A55FCE0D20A67C /* TaskSubitem.swift */; };
+		426B25EFA214E8CEC205ED70 /* LabStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D550F9E81D9C6ABB47369FD /* LabStore.swift */; };
+		454E6E328A7951FC9DF8E9E0 /* ReviewSchedulerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1475A015F8AB74E41C220177 /* ReviewSchedulerTests.swift */; };
+		455CDBBC8ADB1AC0E1909AE2 /* CoachAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0F85848AE257EFCB3A8140 /* CoachAgent.swift */; };
+		4614728894F63BAFBFD1A4B7 /* SharedUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89EE5A200DCF9B213BB3E1EB /* SharedUI.swift */; };
+		472AF02463EBA92FC6230707 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D5B40745FE82B66D3718B72 /* TaskDetailView.swift */; };
+		4A46C89C37BAB8F9692807D6 /* AddDictationSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A44ACE508706921733B1A70C /* AddDictationSessionView.swift */; };
+		4AD994F673F6F25CEBF8FEB7 /* RecentPlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD2E486DEFB82D51B67A6E /* RecentPlanTests.swift */; };
+		4C5E848BF87306C1CF3C03EC /* ReviewPlanExplanationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C36B50419BC59B479CDFA0 /* ReviewPlanExplanationTests.swift */; };
+		4DA195AAC24D8DC8278CEF9E /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286AE4D4A25A22B18E65D989 /* Points.swift */; };
+		5192B52C8EC8F35F8F8D7C1F /* Grade5ChineseDictationPlanImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145CBEFA820AE142E640128 /* Grade5ChineseDictationPlanImporter.swift */; };
+		52C12E1823FD2A752CB3BC3B /* MediaLibraryStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E95ECE417D435C69AEC01D6 /* MediaLibraryStorage.swift */; };
+		550C58C81E051FC0B4BA6C03 /* ReviewSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08B20F5F15AD0B4B5E0C8592 /* ReviewSessionView.swift */; };
+		559F857415687D397C08A3BB /* SyncStatusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E66DAAADFB1CC9385F47D4 /* SyncStatusStore.swift */; };
+		56083D94726FA30F3BEFC204 /* ReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669441694877122E7264502E /* ReviewScheduler.swift */; };
+		560F61BB35B323AE4032138A /* CoachCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0DEB77447F6965432D23A /* CoachCore.framework */; };
+		568CEB7DCB2205A9B2EEA34F /* AddReviewItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78109A3D7CE03E53BB621B48 /* AddReviewItemView.swift */; };
+		581E4F5B9E60AAC05F76F2E3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E6A07CE2A3B3187B9EBE50 /* HomeView.swift */; };
+		58F5D2C1B824EF3C907BA787 /* MediaAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE15EC3CFE00E86CED211DA /* MediaAsset.swift */; };
+		59B19AD40719E1BCFE1C2370 /* HomeDashboardModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF26F29FB217CC7D3FA03F /* HomeDashboardModels.swift */; };
+		5D350E71D63834250010414D /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00847CE802C8C230CB48C472 /* AppModel.swift */; };
+		5F15FFC37B934C3F8182DD8E /* DailyQuotes.json in Resources */ = {isa = PBXBuildFile; fileRef = A9D93A5C0CE3A80FDA8BD5B4 /* DailyQuotes.json */; };
+		5FA5801D6DDF429B9D7B3F9A /* TaskCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B063715CDD0832379EF9227 /* TaskCompletion.swift */; };
+		61E1BA86FF33E958E472A20D /* LearningStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED37233FF1DD7D80DE45001 /* LearningStore.swift */; };
+		62E69E059775523F8094A159 /* AppSettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798CF0ABE28DB6407FE2B854 /* AppSettingsStore.swift */; };
+		637E96427A324033AF8823E7 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B78FE10139183B928AAE4D93 /* Models.swift */; };
+		6712DBC4E3DA8848E3D0E017 /* CoachResponsivenessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A45CA3E9689C21E5AE2261 /* CoachResponsivenessTests.swift */; };
+		6A0F159FDAF97BF9551CB7A5 /* HomeDashboardSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC873206E47685D012FB5B59 /* HomeDashboardSnapshot.swift */; };
+		6B347EEF081534CDFACBF194 /* DictationEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4140B0DFA44FB2338871F277 /* DictationEntry.swift */; };
+		6E4C76EE248B318CFE1ED9A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841DCA6C8DB377C08DC74D20 /* Assets.xcassets */; };
+		776C9D2478242D1A5FD4EB65 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131D85706CD156DE04924B8C /* TaskItem.swift */; };
+		7A797C76BCB6F847CC053F7C /* CoachNativeSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DAAA0259132A77776C1988 /* CoachNativeSnapshot.swift */; };
+		85A52D44891CA3B26B1F8BF8 /* CoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E680BBD91A17AF63C71B4DB5 /* CoreTests.swift */; };
+		86CFBA2F876811ADB259AD4D /* DictationSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B589C66F4AD3386C95D6C9 /* DictationSession.swift */; };
+		8EAD80F04A582F485EF6D2C2 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E95ADE2BD7A0D67124430FD /* LibraryView.swift */; };
+		8F113979322EDEC4FB503EDA /* CoachFeedbackPagingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF02961F13D14A1181F5963C /* CoachFeedbackPagingTests.swift */; };
+		8F52C5C45A7F46236110314E /* DictationHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14D662D0DDF36478F473D3FA /* DictationHomeView.swift */; };
+		8FD2DC3906AB7CE72D8D842A /* AdvancedSyncDiagnosticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52771B56B2D096968115C09A /* AdvancedSyncDiagnosticView.swift */; };
+		8FD3AAF55A34EA0237584129 /* HomeDashboardDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA0FD5F28BA7E55487236BAD /* HomeDashboardDataLoader.swift */; };
+		942EE74057C25C1F3EF43058 /* AddScheduleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3707AA6EC705CDD82FC0C02 /* AddScheduleView.swift */; };
+		973FDECAC0A44E183D619DF2 /* CoachTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C719284CA71CE31147329FFF /* CoachTools.swift */; };
+		977703736E248B1AE6CFEBC4 /* LabAPIKeyControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB46014F47002DFEDBBEC816 /* LabAPIKeyControllerTests.swift */; };
+		9A4B5450CE1200D0F34AFAD0 /* TaskExecutionSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DD9B36F849DA6D034759E4 /* TaskExecutionSupport.swift */; };
+		9B721A56F01970B89C7FCF3D /* CoachLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4136D697CEC6A0A013071A01 /* CoachLabUITests.swift */; };
+		9FD4F2DF8D68327BC7D24D88 /* MediaLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCB0462EE89C19A8A7BC3CF /* MediaLibraryView.swift */; };
+		9FE375FD5246063074F715F7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDDD5733AC7B578760E63188 /* SettingsView.swift */; };
+		A6E676EE0D944127AFB23B44 /* BatchReviewSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F911366743CB894C162861EB /* BatchReviewSessionView.swift */; };
+		A7FE93791010F9C9E6A305FC /* DailyReviewPlanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074009FAE2876A7071AAA76E /* DailyReviewPlanner.swift */; };
+		A851D391AB09668903095DC5 /* CoachNativeSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB46F634948423DA3CB1C656 /* CoachNativeSnapshotTests.swift */; };
+		A99E6C8F05D91225C0A6416F /* CloudStorageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2582D3606EC945B93ED7ADFE /* CloudStorageTests.swift */; };
+		AC7EBA45D62C8DE8991AD97D /* CoachCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0DEB77447F6965432D23A /* CoachCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		ADBC4A8D6AB28978F7D30CC1 /* DailyCalculationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C317C6D0797D57FA90AA97 /* DailyCalculationView.swift */; };
+		B41AA5F4770F039CF84CFE25 /* Grade5EnglishDictationPlanImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34CBB34D2CDB1B0007AFFCB7 /* Grade5EnglishDictationPlanImporter.swift */; };
+		B6F09C25DEC32757A660CE03 /* DashboardBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BEB4327F1B8CD12D2A7642 /* DashboardBoardView.swift */; };
+		B8B0B4A59F419B3422FCEFA9 /* DailyCalculationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F726D44C23D82CB7E38A391 /* DailyCalculationTests.swift */; };
+		BB5EC7F2FB9BDB2B70B1F90E /* CloudSchemaExportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474DD93E9C20B1D98F04CCFC /* CloudSchemaExportTests.swift */; };
+		BDEC85B73B5FDCE48EC74003 /* AddTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F67FA06BDC2234D44623A42 /* AddTaskView.swift */; };
+		C22EC3C554036DE9D57FE94A /* SpeechAudioSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1318D8B9604919AB272F8C /* SpeechAudioSession.swift */; };
+		C44F8A46FB3EAEBE29CCBC0E /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625EF435CE293E5E78EAF764 /* RootTabView.swift */; };
+		C458A6AA2E4F898637A32E11 /* SettingsPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B61476F28D44DD727AC7818 /* SettingsPerformanceTests.swift */; };
+		C5B9BFC8B1008518A62A682D /* EnglishDictionary.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 66D9B21A040690D54978461E /* EnglishDictionary.sqlite */; };
+		C7296B7F9DFEABABB6AB9516 /* TypoReviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71AEAF4E53E51113B5B422D3 /* TypoReviewApp.swift */; };
+		C8F80C53EA7127CEFE806BDF /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1F00AEB5A50B79CFA4D97D /* libsqlite3.tbd */; };
+		CCB8A2E919982BEE3CBBF6E6 /* ECDICT_LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = B8C641D709A5EE87F5141A85 /* ECDICT_LICENSE.txt */; };
+		CFD672D411D0FBBF95FED611 /* DailyQuote.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDB3E92135CE7770504BE103 /* DailyQuote.swift */; };
+		D2BB409876619BD32BF7AEBC /* LabAPIKeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B098147724A7A2F7FA2EEF /* LabAPIKeyController.swift */; };
+		D4C337BF0F6DC15EF534CD7D /* CoachCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0DEB77447F6965432D23A /* CoachCore.framework */; };
+		D5084690FEC77860138EA433 /* LabKeychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FEE28724DCB5DD41112E2B5 /* LabKeychain.swift */; };
+		D6D49E237DE00D8EDF9ABD68 /* ReviewScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D944994570FFD6DA503A1FE /* ReviewScheduler.swift */; };
+		D980359906B3BDFEFA549618 /* BatchReviewGradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41732FB68924B51E0678195C /* BatchReviewGradingView.swift */; };
+		DB1F49256CB1D8195F61C897 /* ObjectiveCExceptionCatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = F4647E06B3458AEC5CE8772E /* ObjectiveCExceptionCatcher.m */; };
+		DB9045C21EF8387850E4AB8A /* BatchAddReviewItemsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B6B1FACD9AFBE350DB19DA /* BatchAddReviewItemsView.swift */; };
+		E223A985513CDE8528AC3885 /* ServerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D135313793624857543AF575 /* ServerAPI.swift */; };
+		E3D170924293BA6727D7BDDD /* AutoDictationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D5AB2D0434BE40F75910AA /* AutoDictationTests.swift */; };
+		E4171665C52AFC8388E6E143 /* Grade5ChineseDictationPlanImporterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892E75199A23A2C2B4D6C9DC /* Grade5ChineseDictationPlanImporterTests.swift */; };
+		E4F3B3D2CDC407A81208EC72 /* HomeLearningStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13EAFE0EBD21BA2FE699AD92 /* HomeLearningStatusTests.swift */; };
+		E510AAAAC5CCBB3032EFDEF5 /* DailyReviewPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF5EC84E690DBAC8C56D993 /* DailyReviewPlannerTests.swift */; };
+		E61A177D0B0CBEA5FC7E80D3 /* ReviewRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C30AF3F457FA8D0A348D104 /* ReviewRecord.swift */; };
+		E71BB8E3E1AF75CE5421A61B /* BackupImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F243DF0108910F13E32CEEDA /* BackupImporter.swift */; };
+		E733B53ECE0298E8FA4F3A2A /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3896157FA02D2F30103EEDC6 /* TasksView.swift */; };
+		EC6EE1D53FA1E3934787E14E /* CoachCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0DEB77447F6965432D23A /* CoachCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EF199249579C9B865B80F66A /* DictationSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95560BC6531DA13D00A52B32 /* DictationSessionView.swift */; };
+		F333132DB0705DC34C6E8FB1 /* DailyCalculation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F60E2FF84886395DF85958C3 /* DailyCalculation.swift */; };
+		F41E56F2E0F6989087FED8A0 /* AppDataChangeCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005EAD377DB51503120EB4EC /* AppDataChangeCenter.swift */; };
+		F8F4C059E7A6ED58B505214A /* AICoachCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40385EFA6C04E94F81EB35EA /* AICoachCoordinator.swift */; };
+		FA3D03F2A4B64862EC242724 /* AICoachIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA61B4DAB09C51F211D62059 /* AICoachIntegrationTests.swift */; };
+		FBC02B72CD60D40C2348DFBC /* DailyQuoteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299DBAE1E7394852CD6CE153 /* DailyQuoteTests.swift */; };
+		FC41D21BC0D00A12EB3EC58E /* CoachCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 80E0DEB77447F6965432D23A /* CoachCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FC56EF544CC0BA78BFA45817 /* DictationReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4238E448C6D272079D4702B /* DictationReviewView.swift */; };
+		FE2F345242155F1F29E3BE12 /* HomeSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B4AE398B158A02375B8FC0 /* HomeSubviews.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3FE0D9031C1428471FB86FFB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6AEB0CFF50FC696D1C1C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD312114A26B8278EC03DFDC;
+			remoteInfo = CoachCore;
+		};
+		409F4A6185129110998E0FB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6AEB0CFF50FC696D1C1C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83780F63FCB06CAC9F723255;
+			remoteInfo = CoachLab;
+		};
+		6B5366B454AB1832A9A7383E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6AEB0CFF50FC696D1C1C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD312114A26B8278EC03DFDC;
+			remoteInfo = CoachCore;
+		};
+		7EB8C19218F7F3CE3261AA3F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6AEB0CFF50FC696D1C1C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83780F63FCB06CAC9F723255;
+			remoteInfo = CoachLab;
+		};
+		F54B489B0D45B932FC5EE4E4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ECE6AEB0CFF50FC696D1C1C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DD312114A26B8278EC03DFDC;
+			remoteInfo = CoachCore;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		ABBF8F2AFDB9EE83992F0BCF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EC6EE1D53FA1E3934787E14E /* CoachCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9FD64B3DA8D85D925ABE05A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				AC7EBA45D62C8DE8991AD97D /* CoachCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8336C6F04CE6DB514860F25 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FC41D21BC0D00A12EB3EC58E /* CoachCore.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		005EAD377DB51503120EB4EC /* AppDataChangeCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDataChangeCenter.swift; sourceTree = "<group>"; };
+		00847CE802C8C230CB48C472 /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		02B098147724A7A2F7FA2EEF /* LabAPIKeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAPIKeyController.swift; sourceTree = "<group>"; };
+		074009FAE2876A7071AAA76E /* DailyReviewPlanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReviewPlanner.swift; sourceTree = "<group>"; };
+		08B20F5F15AD0B4B5E0C8592 /* ReviewSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSessionView.swift; sourceTree = "<group>"; };
+		09BEC3432320DD6F19831FBF /* ReviewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewItem.swift; sourceTree = "<group>"; };
+		0D550F9E81D9C6ABB47369FD /* LabStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabStore.swift; sourceTree = "<group>"; };
+		0D5B40745FE82B66D3718B72 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
+		0EF5EC84E690DBAC8C56D993 /* DailyReviewPlannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyReviewPlannerTests.swift; sourceTree = "<group>"; };
+		108ACE0BDED56C421728761B /* MediaLibraryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryStore.swift; sourceTree = "<group>"; };
+		11A45BF4126DE313EEA34022 /* MediaPlaybackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlaybackCoordinator.swift; sourceTree = "<group>"; };
+		11E0D30ACE32F7884533028E /* CoachCoreTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoachCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		1242BE40F2521ADB6DA209BF /* ReviewPlanningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPlanningTests.swift; sourceTree = "<group>"; };
+		131D85706CD156DE04924B8C /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		13EAFE0EBD21BA2FE699AD92 /* HomeLearningStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLearningStatusTests.swift; sourceTree = "<group>"; };
+		1475A015F8AB74E41C220177 /* ReviewSchedulerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSchedulerTests.swift; sourceTree = "<group>"; };
+		14D662D0DDF36478F473D3FA /* DictationHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationHomeView.swift; sourceTree = "<group>"; };
+		15DD9B36F849DA6D034759E4 /* TaskExecutionSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskExecutionSupport.swift; sourceTree = "<group>"; };
+		20D5AB2D0434BE40F75910AA /* AutoDictationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoDictationTests.swift; sourceTree = "<group>"; };
+		24A45CA3E9689C21E5AE2261 /* CoachResponsivenessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachResponsivenessTests.swift; sourceTree = "<group>"; };
+		2582D3606EC945B93ED7ADFE /* CloudStorageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageTests.swift; sourceTree = "<group>"; };
+		286AE4D4A25A22B18E65D989 /* Points.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
+		299DBAE1E7394852CD6CE153 /* DailyQuoteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuoteTests.swift; sourceTree = "<group>"; };
+		29DAAA0259132A77776C1988 /* CoachNativeSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachNativeSnapshot.swift; sourceTree = "<group>"; };
+		2B21DE0619805EF33AEE8DF9 /* DailySummaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryTests.swift; sourceTree = "<group>"; };
+		34CBB34D2CDB1B0007AFFCB7 /* Grade5EnglishDictationPlanImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade5EnglishDictationPlanImporter.swift; sourceTree = "<group>"; };
+		3896157FA02D2F30103EEDC6 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		3B0F85848AE257EFCB3A8140 /* CoachAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachAgent.swift; sourceTree = "<group>"; };
+		3D944994570FFD6DA503A1FE /* ReviewScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewScheduler.swift; sourceTree = "<group>"; };
+		3ED37233FF1DD7D80DE45001 /* LearningStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningStore.swift; sourceTree = "<group>"; };
+		40385EFA6C04E94F81EB35EA /* AICoachCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachCoordinator.swift; sourceTree = "<group>"; };
+		4136D697CEC6A0A013071A01 /* CoachLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachLabUITests.swift; sourceTree = "<group>"; };
+		4140B0DFA44FB2338871F277 /* DictationEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationEntry.swift; sourceTree = "<group>"; };
+		41732C355BA11369AC294A60 /* Grade5EnglishDictationPlanImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade5EnglishDictationPlanImporterTests.swift; sourceTree = "<group>"; };
+		41732FB68924B51E0678195C /* BatchReviewGradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchReviewGradingView.swift; sourceTree = "<group>"; };
+		474DD93E9C20B1D98F04CCFC /* CloudSchemaExportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSchemaExportTests.swift; sourceTree = "<group>"; };
+		4B063715CDD0832379EF9227 /* TaskCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCompletion.swift; sourceTree = "<group>"; };
+		52771B56B2D096968115C09A /* AdvancedSyncDiagnosticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSyncDiagnosticView.swift; sourceTree = "<group>"; };
+		5345E94E2709DB1F09FC7AB6 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		55E66DAAADFB1CC9385F47D4 /* SyncStatusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncStatusStore.swift; sourceTree = "<group>"; };
+		561DDD91FFB960BCD744FBDC /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		58B4AE398B158A02375B8FC0 /* HomeSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSubviews.swift; sourceTree = "<group>"; };
+		5D85A35B156DC9D8A1F46E12 /* CoachLab.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CoachLab.entitlements; sourceTree = "<group>"; };
+		6119CF4EDA76FE3D311A4D85 /* EnglishGlossService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnglishGlossService.swift; sourceTree = "<group>"; };
+		625EF435CE293E5E78EAF764 /* RootTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		669441694877122E7264502E /* ReviewScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewScheduler.swift; sourceTree = "<group>"; };
+		66D9B21A040690D54978461E /* EnglishDictionary.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = EnglishDictionary.sqlite; sourceTree = "<group>"; };
+		6B61476F28D44DD727AC7818 /* SettingsPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPerformanceTests.swift; sourceTree = "<group>"; };
+		6B871FA0A05C6E7673D1EDB5 /* CloudSyncDiagnosticTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudSyncDiagnosticTests.swift; sourceTree = "<group>"; };
+		6CC121BC44852609FBA53251 /* CoachLabUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = CoachLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E95ADE2BD7A0D67124430FD /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		6E95ECE417D435C69AEC01D6 /* MediaLibraryStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryStorage.swift; sourceTree = "<group>"; };
+		6F67FA06BDC2234D44623A42 /* AddTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskView.swift; sourceTree = "<group>"; };
+		70C8BCA87D68D1B12DF8C3AA /* ScheduleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleItem.swift; sourceTree = "<group>"; };
+		7145CBEFA820AE142E640128 /* Grade5ChineseDictationPlanImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade5ChineseDictationPlanImporter.swift; sourceTree = "<group>"; };
+		71AEAF4E53E51113B5B422D3 /* TypoReviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypoReviewApp.swift; sourceTree = "<group>"; };
+		78109A3D7CE03E53BB621B48 /* AddReviewItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewItemView.swift; sourceTree = "<group>"; };
+		798CF0ABE28DB6407FE2B854 /* AppSettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsStore.swift; sourceTree = "<group>"; };
+		7B73FB9A7037ACB8A62503F7 /* TypoReview-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TypoReview-Bridging-Header.h"; sourceTree = "<group>"; };
+		7C30AF3F457FA8D0A348D104 /* ReviewRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewRecord.swift; sourceTree = "<group>"; };
+		80B589C66F4AD3386C95D6C9 /* DictationSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationSession.swift; sourceTree = "<group>"; };
+		80E0DEB77447F6965432D23A /* CoachCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoachCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81EF4AA3115AC52C32DCA695 /* ServerSyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerSyncCoordinator.swift; sourceTree = "<group>"; };
+		841DCA6C8DB377C08DC74D20 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		892E75199A23A2C2B4D6C9DC /* Grade5ChineseDictationPlanImporterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grade5ChineseDictationPlanImporterTests.swift; sourceTree = "<group>"; };
+		89EE5A200DCF9B213BB3E1EB /* SharedUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUI.swift; sourceTree = "<group>"; };
+		8B1F00AEB5A50B79CFA4D97D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		8FEE28724DCB5DD41112E2B5 /* LabKeychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabKeychain.swift; sourceTree = "<group>"; };
+		901121872FF2B911A4125420 /* CloudStorageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudStorageConfiguration.swift; sourceTree = "<group>"; };
+		92EB4C71F84AC43ED8F17BAD /* DataBackup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBackup.swift; sourceTree = "<group>"; };
+		95560BC6531DA13D00A52B32 /* DictationSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationSessionView.swift; sourceTree = "<group>"; };
+		9A64A034FACE320F5E9A946C /* HomeDashboardSnapshotLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardSnapshotLoader.swift; sourceTree = "<group>"; };
+		9D1318D8B9604919AB272F8C /* SpeechAudioSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechAudioSession.swift; sourceTree = "<group>"; };
+		9F557F7DD5E032EF218E38DE /* TaskDetailSupportViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailSupportViews.swift; sourceTree = "<group>"; };
+		9F726D44C23D82CB7E38A391 /* DailyCalculationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCalculationTests.swift; sourceTree = "<group>"; };
+		A44ACE508706921733B1A70C /* AddDictationSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDictationSessionView.swift; sourceTree = "<group>"; };
+		A7321EDF4F9290397E3EA590 /* CoachLab.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = CoachLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9D93A5C0CE3A80FDA8BD5B4 /* DailyQuotes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DailyQuotes.json; sourceTree = "<group>"; };
+		AAA89A7C546D6FD507F4A1B0 /* AutoDictationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoDictationController.swift; sourceTree = "<group>"; };
+		AABC280E32143AE5F224000E /* DailySummaryAI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailySummaryAI.swift; sourceTree = "<group>"; };
+		AECD2E486DEFB82D51B67A6E /* RecentPlanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentPlanTests.swift; sourceTree = "<group>"; };
+		B3707AA6EC705CDD82FC0C02 /* AddScheduleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleView.swift; sourceTree = "<group>"; };
+		B3DF26F29FB217CC7D3FA03F /* HomeDashboardModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardModels.swift; sourceTree = "<group>"; };
+		B69CE180991F666D5BF18D07 /* CoachInteractionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachInteractionTests.swift; sourceTree = "<group>"; };
+		B78FE10139183B928AAE4D93 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		B7C317C6D0797D57FA90AA97 /* DailyCalculationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCalculationView.swift; sourceTree = "<group>"; };
+		B8C641D709A5EE87F5141A85 /* ECDICT_LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ECDICT_LICENSE.txt; sourceTree = "<group>"; };
+		BA0FD5F28BA7E55487236BAD /* HomeDashboardDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardDataLoader.swift; sourceTree = "<group>"; };
+		BCCB0462EE89C19A8A7BC3CF /* MediaLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaLibraryView.swift; sourceTree = "<group>"; };
+		BDDD5733AC7B578760E63188 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C719284CA71CE31147329FFF /* CoachTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTools.swift; sourceTree = "<group>"; };
+		CB46F634948423DA3CB1C656 /* CoachNativeSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachNativeSnapshotTests.swift; sourceTree = "<group>"; };
+		CC873206E47685D012FB5B59 /* HomeDashboardSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardSnapshot.swift; sourceTree = "<group>"; };
+		CF02961F13D14A1181F5963C /* CoachFeedbackPagingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachFeedbackPagingTests.swift; sourceTree = "<group>"; };
+		D135313793624857543AF575 /* ServerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAPI.swift; sourceTree = "<group>"; };
+		D1BD47609AFCE434F78D8297 /* AICoachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachView.swift; sourceTree = "<group>"; };
+		D4238E448C6D272079D4702B /* DictationReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictationReviewView.swift; sourceTree = "<group>"; };
+		E1E6A07CE2A3B3187B9EBE50 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		E1F2A6DF35ED253D6A03FB31 /* ReviewPlanSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPlanSummaryView.swift; sourceTree = "<group>"; };
+		E680BBD91A17AF63C71B4DB5 /* CoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreTests.swift; sourceTree = "<group>"; };
+		E8553F44CD305E1B9235EDF3 /* FullAppTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = FullAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8B6B1FACD9AFBE350DB19DA /* BatchAddReviewItemsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchAddReviewItemsView.swift; sourceTree = "<group>"; };
+		EB46014F47002DFEDBBEC816 /* LabAPIKeyControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabAPIKeyControllerTests.swift; sourceTree = "<group>"; };
+		F0CAB16591A55FCE0D20A67C /* TaskSubitem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskSubitem.swift; sourceTree = "<group>"; };
+		F243DF0108910F13E32CEEDA /* BackupImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupImporter.swift; sourceTree = "<group>"; };
+		F4647E06B3458AEC5CE8772E /* ObjectiveCExceptionCatcher.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCExceptionCatcher.m; sourceTree = "<group>"; };
+		F60E2FF84886395DF85958C3 /* DailyCalculation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCalculation.swift; sourceTree = "<group>"; };
+		F7BEB4327F1B8CD12D2A7642 /* DashboardBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardBoardView.swift; sourceTree = "<group>"; };
+		F911366743CB894C162861EB /* BatchReviewSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchReviewSessionView.swift; sourceTree = "<group>"; };
+		F9C36B50419BC59B479CDFA0 /* ReviewPlanExplanationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewPlanExplanationTests.swift; sourceTree = "<group>"; };
+		FA61B4DAB09C51F211D62059 /* AICoachIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AICoachIntegrationTests.swift; sourceTree = "<group>"; };
+		FABFB57279D8FCD48B27E155 /* ObjectiveCExceptionCatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveCExceptionCatcher.h; sourceTree = "<group>"; };
+		FCE15EC3CFE00E86CED211DA /* MediaAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaAsset.swift; sourceTree = "<group>"; };
+		FDB3E92135CE7770504BE103 /* DailyQuote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuote.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09B3000D0363BD926C912F60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C8F80C53EA7127CEFE806BDF /* libsqlite3.tbd in Frameworks */,
+				560F61BB35B323AE4032138A /* CoachCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C2F64B8AA8C71A945C0DBA1E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				351CF81F3AC800D7A40D5FB5 /* CoachCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C95E4A8CF851823F8CCD96F8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4C337BF0F6DC15EF534CD7D /* CoachCore.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		11C2FFE4405F6172736F9500 = {
+			isa = PBXGroup;
+			children = (
+				BF889FE72E543001A8D7BFC7 /* Core */,
+				D7FCCC9A429BEE2CB68250AD /* FullApp */,
+				BB4470C2E5318522537DCF63 /* FullAppTests */,
+				BCCDA1C99D06486540D879FA /* Tests */,
+				D8321E00A40478218193DBBC /* UITests */,
+				C0474C253A16159BF56D08BD /* Frameworks */,
+				2D37A42CFF345AF531CA84F4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2D37A42CFF345AF531CA84F4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80E0DEB77447F6965432D23A /* CoachCore.framework */,
+				11E0D30ACE32F7884533028E /* CoachCoreTests.xctest */,
+				A7321EDF4F9290397E3EA590 /* CoachLab.app */,
+				6CC121BC44852609FBA53251 /* CoachLabUITests.xctest */,
+				E8553F44CD305E1B9235EDF3 /* FullAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB4470C2E5318522537DCF63 /* FullAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA61B4DAB09C51F211D62059 /* AICoachIntegrationTests.swift */,
+				20D5AB2D0434BE40F75910AA /* AutoDictationTests.swift */,
+				474DD93E9C20B1D98F04CCFC /* CloudSchemaExportTests.swift */,
+				2582D3606EC945B93ED7ADFE /* CloudStorageTests.swift */,
+				6B871FA0A05C6E7673D1EDB5 /* CloudSyncDiagnosticTests.swift */,
+				B69CE180991F666D5BF18D07 /* CoachInteractionTests.swift */,
+				CB46F634948423DA3CB1C656 /* CoachNativeSnapshotTests.swift */,
+				9F726D44C23D82CB7E38A391 /* DailyCalculationTests.swift */,
+				299DBAE1E7394852CD6CE153 /* DailyQuoteTests.swift */,
+				0EF5EC84E690DBAC8C56D993 /* DailyReviewPlannerTests.swift */,
+				2B21DE0619805EF33AEE8DF9 /* DailySummaryTests.swift */,
+				892E75199A23A2C2B4D6C9DC /* Grade5ChineseDictationPlanImporterTests.swift */,
+				41732C355BA11369AC294A60 /* Grade5EnglishDictationPlanImporterTests.swift */,
+				13EAFE0EBD21BA2FE699AD92 /* HomeLearningStatusTests.swift */,
+				EB46014F47002DFEDBBEC816 /* LabAPIKeyControllerTests.swift */,
+				AECD2E486DEFB82D51B67A6E /* RecentPlanTests.swift */,
+				F9C36B50419BC59B479CDFA0 /* ReviewPlanExplanationTests.swift */,
+				1475A015F8AB74E41C220177 /* ReviewSchedulerTests.swift */,
+				6B61476F28D44DD727AC7818 /* SettingsPerformanceTests.swift */,
+			);
+			path = FullAppTests;
+			sourceTree = "<group>";
+		};
+		BCCDA1C99D06486540D879FA /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				CF02961F13D14A1181F5963C /* CoachFeedbackPagingTests.swift */,
+				24A45CA3E9689C21E5AE2261 /* CoachResponsivenessTests.swift */,
+				E680BBD91A17AF63C71B4DB5 /* CoreTests.swift */,
+				1242BE40F2521ADB6DA209BF /* ReviewPlanningTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		BF889FE72E543001A8D7BFC7 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F243DF0108910F13E32CEEDA /* BackupImporter.swift */,
+				3B0F85848AE257EFCB3A8140 /* CoachAgent.swift */,
+				C719284CA71CE31147329FFF /* CoachTools.swift */,
+				0D550F9E81D9C6ABB47369FD /* LabStore.swift */,
+				3ED37233FF1DD7D80DE45001 /* LearningStore.swift */,
+				B78FE10139183B928AAE4D93 /* Models.swift */,
+				3D944994570FFD6DA503A1FE /* ReviewScheduler.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		C0474C253A16159BF56D08BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8B1F00AEB5A50B79CFA4D97D /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D7FCCC9A429BEE2CB68250AD /* FullApp */ = {
+			isa = PBXGroup;
+			children = (
+				A44ACE508706921733B1A70C /* AddDictationSessionView.swift */,
+				78109A3D7CE03E53BB621B48 /* AddReviewItemView.swift */,
+				B3707AA6EC705CDD82FC0C02 /* AddScheduleView.swift */,
+				6F67FA06BDC2234D44623A42 /* AddTaskView.swift */,
+				52771B56B2D096968115C09A /* AdvancedSyncDiagnosticView.swift */,
+				40385EFA6C04E94F81EB35EA /* AICoachCoordinator.swift */,
+				D1BD47609AFCE434F78D8297 /* AICoachView.swift */,
+				005EAD377DB51503120EB4EC /* AppDataChangeCenter.swift */,
+				00847CE802C8C230CB48C472 /* AppModel.swift */,
+				561DDD91FFB960BCD744FBDC /* AppSettings.swift */,
+				798CF0ABE28DB6407FE2B854 /* AppSettingsStore.swift */,
+				841DCA6C8DB377C08DC74D20 /* Assets.xcassets */,
+				AAA89A7C546D6FD507F4A1B0 /* AutoDictationController.swift */,
+				E8B6B1FACD9AFBE350DB19DA /* BatchAddReviewItemsView.swift */,
+				41732FB68924B51E0678195C /* BatchReviewGradingView.swift */,
+				F911366743CB894C162861EB /* BatchReviewSessionView.swift */,
+				901121872FF2B911A4125420 /* CloudStorageConfiguration.swift */,
+				5D85A35B156DC9D8A1F46E12 /* CoachLab.entitlements */,
+				29DAAA0259132A77776C1988 /* CoachNativeSnapshot.swift */,
+				F60E2FF84886395DF85958C3 /* DailyCalculation.swift */,
+				B7C317C6D0797D57FA90AA97 /* DailyCalculationView.swift */,
+				FDB3E92135CE7770504BE103 /* DailyQuote.swift */,
+				074009FAE2876A7071AAA76E /* DailyReviewPlanner.swift */,
+				AABC280E32143AE5F224000E /* DailySummaryAI.swift */,
+				F7BEB4327F1B8CD12D2A7642 /* DashboardBoardView.swift */,
+				92EB4C71F84AC43ED8F17BAD /* DataBackup.swift */,
+				4140B0DFA44FB2338871F277 /* DictationEntry.swift */,
+				14D662D0DDF36478F473D3FA /* DictationHomeView.swift */,
+				D4238E448C6D272079D4702B /* DictationReviewView.swift */,
+				80B589C66F4AD3386C95D6C9 /* DictationSession.swift */,
+				95560BC6531DA13D00A52B32 /* DictationSessionView.swift */,
+				6119CF4EDA76FE3D311A4D85 /* EnglishGlossService.swift */,
+				7145CBEFA820AE142E640128 /* Grade5ChineseDictationPlanImporter.swift */,
+				34CBB34D2CDB1B0007AFFCB7 /* Grade5EnglishDictationPlanImporter.swift */,
+				BA0FD5F28BA7E55487236BAD /* HomeDashboardDataLoader.swift */,
+				B3DF26F29FB217CC7D3FA03F /* HomeDashboardModels.swift */,
+				CC873206E47685D012FB5B59 /* HomeDashboardSnapshot.swift */,
+				9A64A034FACE320F5E9A946C /* HomeDashboardSnapshotLoader.swift */,
+				58B4AE398B158A02375B8FC0 /* HomeSubviews.swift */,
+				E1E6A07CE2A3B3187B9EBE50 /* HomeView.swift */,
+				02B098147724A7A2F7FA2EEF /* LabAPIKeyController.swift */,
+				8FEE28724DCB5DD41112E2B5 /* LabKeychain.swift */,
+				6E95ADE2BD7A0D67124430FD /* LibraryView.swift */,
+				5345E94E2709DB1F09FC7AB6 /* Localizable.strings */,
+				FCE15EC3CFE00E86CED211DA /* MediaAsset.swift */,
+				6E95ECE417D435C69AEC01D6 /* MediaLibraryStorage.swift */,
+				108ACE0BDED56C421728761B /* MediaLibraryStore.swift */,
+				BCCB0462EE89C19A8A7BC3CF /* MediaLibraryView.swift */,
+				11A45BF4126DE313EEA34022 /* MediaPlaybackCoordinator.swift */,
+				FABFB57279D8FCD48B27E155 /* ObjectiveCExceptionCatcher.h */,
+				F4647E06B3458AEC5CE8772E /* ObjectiveCExceptionCatcher.m */,
+				286AE4D4A25A22B18E65D989 /* Points.swift */,
+				09BEC3432320DD6F19831FBF /* ReviewItem.swift */,
+				E1F2A6DF35ED253D6A03FB31 /* ReviewPlanSummaryView.swift */,
+				7C30AF3F457FA8D0A348D104 /* ReviewRecord.swift */,
+				669441694877122E7264502E /* ReviewScheduler.swift */,
+				08B20F5F15AD0B4B5E0C8592 /* ReviewSessionView.swift */,
+				625EF435CE293E5E78EAF764 /* RootTabView.swift */,
+				70C8BCA87D68D1B12DF8C3AA /* ScheduleItem.swift */,
+				D135313793624857543AF575 /* ServerAPI.swift */,
+				81EF4AA3115AC52C32DCA695 /* ServerSyncCoordinator.swift */,
+				BDDD5733AC7B578760E63188 /* SettingsView.swift */,
+				89EE5A200DCF9B213BB3E1EB /* SharedUI.swift */,
+				9D1318D8B9604919AB272F8C /* SpeechAudioSession.swift */,
+				55E66DAAADFB1CC9385F47D4 /* SyncStatusStore.swift */,
+				4B063715CDD0832379EF9227 /* TaskCompletion.swift */,
+				9F557F7DD5E032EF218E38DE /* TaskDetailSupportViews.swift */,
+				0D5B40745FE82B66D3718B72 /* TaskDetailView.swift */,
+				15DD9B36F849DA6D034759E4 /* TaskExecutionSupport.swift */,
+				131D85706CD156DE04924B8C /* TaskItem.swift */,
+				F0CAB16591A55FCE0D20A67C /* TaskSubitem.swift */,
+				3896157FA02D2F30103EEDC6 /* TasksView.swift */,
+				7B73FB9A7037ACB8A62503F7 /* TypoReview-Bridging-Header.h */,
+				71AEAF4E53E51113B5B422D3 /* TypoReviewApp.swift */,
+				ED0E01E58CA5987ABB60B487 /* Resources */,
+			);
+			path = FullApp;
+			sourceTree = "<group>";
+		};
+		D8321E00A40478218193DBBC /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				4136D697CEC6A0A013071A01 /* CoachLabUITests.swift */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		ED0E01E58CA5987ABB60B487 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A9D93A5C0CE3A80FDA8BD5B4 /* DailyQuotes.json */,
+				B8C641D709A5EE87F5141A85 /* ECDICT_LICENSE.txt */,
+				66D9B21A040690D54978461E /* EnglishDictionary.sqlite */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		59DB999E78AA1CAA984574CC /* CoachLabUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C456780FB2A35AEB19AF622A /* Build configuration list for PBXNativeTarget "CoachLabUITests" */;
+			buildPhases = (
+				DE574B8BD1ECD6EBFBF99F69 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				745F5BC1E763280E60492C5F /* PBXTargetDependency */,
+			);
+			name = CoachLabUITests;
+			packageProductDependencies = (
+			);
+			productName = CoachLabUITests;
+			productReference = 6CC121BC44852609FBA53251 /* CoachLabUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		5D77E43A20F6B26A4A31D01B /* FullAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 45E56911B40FFF3C4333C966 /* Build configuration list for PBXNativeTarget "FullAppTests" */;
+			buildPhases = (
+				364DDC8F7E51427B9AA52291 /* Sources */,
+				C2F64B8AA8C71A945C0DBA1E /* Frameworks */,
+				C9FD64B3DA8D85D925ABE05A /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B634945A3314145692D2F2C /* PBXTargetDependency */,
+				EB8610B1A431E5BBBD0F27E2 /* PBXTargetDependency */,
+			);
+			name = FullAppTests;
+			packageProductDependencies = (
+			);
+			productName = FullAppTests;
+			productReference = E8553F44CD305E1B9235EDF3 /* FullAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		83780F63FCB06CAC9F723255 /* CoachLab */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0EF6510976EF9C8E8ACDBBA1 /* Build configuration list for PBXNativeTarget "CoachLab" */;
+			buildPhases = (
+				1D88A69849B7C486B41FB977 /* Sources */,
+				EB57371FFC9852191B22C50A /* Resources */,
+				09B3000D0363BD926C912F60 /* Frameworks */,
+				D8336C6F04CE6DB514860F25 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2C193EF40A253F47C04E4B56 /* PBXTargetDependency */,
+			);
+			name = CoachLab;
+			packageProductDependencies = (
+			);
+			productName = CoachLab;
+			productReference = A7321EDF4F9290397E3EA590 /* CoachLab.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DD312114A26B8278EC03DFDC /* CoachCore */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3CED26E72D79C4960C59C43B /* Build configuration list for PBXNativeTarget "CoachCore" */;
+			buildPhases = (
+				E5605922553F5F95E6C1DB07 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CoachCore;
+			packageProductDependencies = (
+			);
+			productName = CoachCore;
+			productReference = 80E0DEB77447F6965432D23A /* CoachCore.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F692394DAD9132E6E31A675B /* CoachCoreTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC1B42EDF5E40EA2DC3C28D5 /* Build configuration list for PBXNativeTarget "CoachCoreTests" */;
+			buildPhases = (
+				5E0FA82B135D34C3680AFC87 /* Sources */,
+				C95E4A8CF851823F8CCD96F8 /* Frameworks */,
+				ABBF8F2AFDB9EE83992F0BCF /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D047F072A08E785E0FF6E106 /* PBXTargetDependency */,
+			);
+			name = CoachCoreTests;
+			packageProductDependencies = (
+			);
+			productName = CoachCoreTests;
+			productReference = 11E0D30ACE32F7884533028E /* CoachCoreTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ECE6AEB0CFF50FC696D1C1C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					59DB999E78AA1CAA984574CC = {
+						DevelopmentTeam = FCAW792CJD;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 83780F63FCB06CAC9F723255;
+					};
+					5D77E43A20F6B26A4A31D01B = {
+						DevelopmentTeam = FCAW792CJD;
+						ProvisioningStyle = Automatic;
+					};
+					83780F63FCB06CAC9F723255 = {
+						DevelopmentTeam = FCAW792CJD;
+						ProvisioningStyle = Automatic;
+					};
+					DD312114A26B8278EC03DFDC = {
+						DevelopmentTeam = FCAW792CJD;
+						ProvisioningStyle = Automatic;
+					};
+					F692394DAD9132E6E31A675B = {
+						DevelopmentTeam = FCAW792CJD;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 1DF75B2B29E61163BB1E34AD /* Build configuration list for PBXProject "CoachLab" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+			);
+			mainGroup = 11C2FFE4405F6172736F9500;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 2D37A42CFF345AF531CA84F4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DD312114A26B8278EC03DFDC /* CoachCore */,
+				F692394DAD9132E6E31A675B /* CoachCoreTests */,
+				83780F63FCB06CAC9F723255 /* CoachLab */,
+				59DB999E78AA1CAA984574CC /* CoachLabUITests */,
+				5D77E43A20F6B26A4A31D01B /* FullAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB57371FFC9852191B22C50A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6E4C76EE248B318CFE1ED9A0 /* Assets.xcassets in Resources */,
+				5F15FFC37B934C3F8182DD8E /* DailyQuotes.json in Resources */,
+				CCB8A2E919982BEE3CBBF6E6 /* ECDICT_LICENSE.txt in Resources */,
+				C5B9BFC8B1008518A62A682D /* EnglishDictionary.sqlite in Resources */,
+				0606816AD69E2CB998514CA9 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D88A69849B7C486B41FB977 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8F4C059E7A6ED58B505214A /* AICoachCoordinator.swift in Sources */,
+				257D3C9D89FEABC4408E449B /* AICoachView.swift in Sources */,
+				4A46C89C37BAB8F9692807D6 /* AddDictationSessionView.swift in Sources */,
+				568CEB7DCB2205A9B2EEA34F /* AddReviewItemView.swift in Sources */,
+				942EE74057C25C1F3EF43058 /* AddScheduleView.swift in Sources */,
+				BDEC85B73B5FDCE48EC74003 /* AddTaskView.swift in Sources */,
+				8FD2DC3906AB7CE72D8D842A /* AdvancedSyncDiagnosticView.swift in Sources */,
+				F41E56F2E0F6989087FED8A0 /* AppDataChangeCenter.swift in Sources */,
+				5D350E71D63834250010414D /* AppModel.swift in Sources */,
+				3359EF6DBEF73066D0F80C5C /* AppSettings.swift in Sources */,
+				62E69E059775523F8094A159 /* AppSettingsStore.swift in Sources */,
+				30FF0E45B1607B73DB35B942 /* AutoDictationController.swift in Sources */,
+				DB9045C21EF8387850E4AB8A /* BatchAddReviewItemsView.swift in Sources */,
+				D980359906B3BDFEFA549618 /* BatchReviewGradingView.swift in Sources */,
+				A6E676EE0D944127AFB23B44 /* BatchReviewSessionView.swift in Sources */,
+				41A7B910CDC1772D6EB9E7EE /* CloudStorageConfiguration.swift in Sources */,
+				7A797C76BCB6F847CC053F7C /* CoachNativeSnapshot.swift in Sources */,
+				F333132DB0705DC34C6E8FB1 /* DailyCalculation.swift in Sources */,
+				ADBC4A8D6AB28978F7D30CC1 /* DailyCalculationView.swift in Sources */,
+				CFD672D411D0FBBF95FED611 /* DailyQuote.swift in Sources */,
+				A7FE93791010F9C9E6A305FC /* DailyReviewPlanner.swift in Sources */,
+				3675B575B660A3CC5D4F4122 /* DailySummaryAI.swift in Sources */,
+				B6F09C25DEC32757A660CE03 /* DashboardBoardView.swift in Sources */,
+				11C4727BEED95F07A6B7918F /* DataBackup.swift in Sources */,
+				6B347EEF081534CDFACBF194 /* DictationEntry.swift in Sources */,
+				8F52C5C45A7F46236110314E /* DictationHomeView.swift in Sources */,
+				FC56EF544CC0BA78BFA45817 /* DictationReviewView.swift in Sources */,
+				86CFBA2F876811ADB259AD4D /* DictationSession.swift in Sources */,
+				EF199249579C9B865B80F66A /* DictationSessionView.swift in Sources */,
+				192EC0A0317FAAFCE0A63B7B /* EnglishGlossService.swift in Sources */,
+				5192B52C8EC8F35F8F8D7C1F /* Grade5ChineseDictationPlanImporter.swift in Sources */,
+				B41AA5F4770F039CF84CFE25 /* Grade5EnglishDictationPlanImporter.swift in Sources */,
+				8FD3AAF55A34EA0237584129 /* HomeDashboardDataLoader.swift in Sources */,
+				59B19AD40719E1BCFE1C2370 /* HomeDashboardModels.swift in Sources */,
+				6A0F159FDAF97BF9551CB7A5 /* HomeDashboardSnapshot.swift in Sources */,
+				0501EBD50638ABCE7A3A3575 /* HomeDashboardSnapshotLoader.swift in Sources */,
+				FE2F345242155F1F29E3BE12 /* HomeSubviews.swift in Sources */,
+				581E4F5B9E60AAC05F76F2E3 /* HomeView.swift in Sources */,
+				D2BB409876619BD32BF7AEBC /* LabAPIKeyController.swift in Sources */,
+				D5084690FEC77860138EA433 /* LabKeychain.swift in Sources */,
+				8EAD80F04A582F485EF6D2C2 /* LibraryView.swift in Sources */,
+				58F5D2C1B824EF3C907BA787 /* MediaAsset.swift in Sources */,
+				52C12E1823FD2A752CB3BC3B /* MediaLibraryStorage.swift in Sources */,
+				28E37D3C50307672032F8747 /* MediaLibraryStore.swift in Sources */,
+				9FD4F2DF8D68327BC7D24D88 /* MediaLibraryView.swift in Sources */,
+				3CCCE001F0402243D1A31D5C /* MediaPlaybackCoordinator.swift in Sources */,
+				DB1F49256CB1D8195F61C897 /* ObjectiveCExceptionCatcher.m in Sources */,
+				4DA195AAC24D8DC8278CEF9E /* Points.swift in Sources */,
+				3E10FE4C0141885E9ED98B60 /* ReviewItem.swift in Sources */,
+				128BF905EF27FAB5D4EEAB7A /* ReviewPlanSummaryView.swift in Sources */,
+				E61A177D0B0CBEA5FC7E80D3 /* ReviewRecord.swift in Sources */,
+				56083D94726FA30F3BEFC204 /* ReviewScheduler.swift in Sources */,
+				550C58C81E051FC0B4BA6C03 /* ReviewSessionView.swift in Sources */,
+				C44F8A46FB3EAEBE29CCBC0E /* RootTabView.swift in Sources */,
+				16B0413D82797367DCCCC802 /* ScheduleItem.swift in Sources */,
+				E223A985513CDE8528AC3885 /* ServerAPI.swift in Sources */,
+				12FABA946599929E85A8C3F1 /* ServerSyncCoordinator.swift in Sources */,
+				9FE375FD5246063074F715F7 /* SettingsView.swift in Sources */,
+				4614728894F63BAFBFD1A4B7 /* SharedUI.swift in Sources */,
+				C22EC3C554036DE9D57FE94A /* SpeechAudioSession.swift in Sources */,
+				559F857415687D397C08A3BB /* SyncStatusStore.swift in Sources */,
+				5FA5801D6DDF429B9D7B3F9A /* TaskCompletion.swift in Sources */,
+				048392B5F05578DA5095626E /* TaskDetailSupportViews.swift in Sources */,
+				472AF02463EBA92FC6230707 /* TaskDetailView.swift in Sources */,
+				9A4B5450CE1200D0F34AFAD0 /* TaskExecutionSupport.swift in Sources */,
+				776C9D2478242D1A5FD4EB65 /* TaskItem.swift in Sources */,
+				41B01CF7FC20947E89ECEF99 /* TaskSubitem.swift in Sources */,
+				E733B53ECE0298E8FA4F3A2A /* TasksView.swift in Sources */,
+				C7296B7F9DFEABABB6AB9516 /* TypoReviewApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		364DDC8F7E51427B9AA52291 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA3D03F2A4B64862EC242724 /* AICoachIntegrationTests.swift in Sources */,
+				E3D170924293BA6727D7BDDD /* AutoDictationTests.swift in Sources */,
+				BB5EC7F2FB9BDB2B70B1F90E /* CloudSchemaExportTests.swift in Sources */,
+				A99E6C8F05D91225C0A6416F /* CloudStorageTests.swift in Sources */,
+				2ACB8BFF2520E549D56AF273 /* CloudSyncDiagnosticTests.swift in Sources */,
+				33C3399797BECC46167103A5 /* CoachInteractionTests.swift in Sources */,
+				A851D391AB09668903095DC5 /* CoachNativeSnapshotTests.swift in Sources */,
+				B8B0B4A59F419B3422FCEFA9 /* DailyCalculationTests.swift in Sources */,
+				FBC02B72CD60D40C2348DFBC /* DailyQuoteTests.swift in Sources */,
+				E510AAAAC5CCBB3032EFDEF5 /* DailyReviewPlannerTests.swift in Sources */,
+				403CB5CC7A7D2A9FAD62EF32 /* DailySummaryTests.swift in Sources */,
+				E4171665C52AFC8388E6E143 /* Grade5ChineseDictationPlanImporterTests.swift in Sources */,
+				1EF677C751CCACFD58260A70 /* Grade5EnglishDictationPlanImporterTests.swift in Sources */,
+				E4F3B3D2CDC407A81208EC72 /* HomeLearningStatusTests.swift in Sources */,
+				977703736E248B1AE6CFEBC4 /* LabAPIKeyControllerTests.swift in Sources */,
+				4AD994F673F6F25CEBF8FEB7 /* RecentPlanTests.swift in Sources */,
+				4C5E848BF87306C1CF3C03EC /* ReviewPlanExplanationTests.swift in Sources */,
+				454E6E328A7951FC9DF8E9E0 /* ReviewSchedulerTests.swift in Sources */,
+				C458A6AA2E4F898637A32E11 /* SettingsPerformanceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E0FA82B135D34C3680AFC87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F113979322EDEC4FB503EDA /* CoachFeedbackPagingTests.swift in Sources */,
+				6712DBC4E3DA8848E3D0E017 /* CoachResponsivenessTests.swift in Sources */,
+				85A52D44891CA3B26B1F8BF8 /* CoreTests.swift in Sources */,
+				00332C1A9B9DD8574C0C2CD8 /* ReviewPlanningTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DE574B8BD1ECD6EBFBF99F69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B721A56F01970B89C7FCF3D /* CoachLabUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5605922553F5F95E6C1DB07 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E71BB8E3E1AF75CE5421A61B /* BackupImporter.swift in Sources */,
+				455CDBBC8ADB1AC0E1909AE2 /* CoachAgent.swift in Sources */,
+				973FDECAC0A44E183D619DF2 /* CoachTools.swift in Sources */,
+				426B25EFA214E8CEC205ED70 /* LabStore.swift in Sources */,
+				61E1BA86FF33E958E472A20D /* LearningStore.swift in Sources */,
+				637E96427A324033AF8823E7 /* Models.swift in Sources */,
+				D6D49E237DE00D8EDF9ABD68 /* ReviewScheduler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2C193EF40A253F47C04E4B56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD312114A26B8278EC03DFDC /* CoachCore */;
+			targetProxy = F54B489B0D45B932FC5EE4E4 /* PBXContainerItemProxy */;
+		};
+		745F5BC1E763280E60492C5F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83780F63FCB06CAC9F723255 /* CoachLab */;
+			targetProxy = 7EB8C19218F7F3CE3261AA3F /* PBXContainerItemProxy */;
+		};
+		7B634945A3314145692D2F2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83780F63FCB06CAC9F723255 /* CoachLab */;
+			targetProxy = 409F4A6185129110998E0FB9 /* PBXContainerItemProxy */;
+		};
+		D047F072A08E785E0FF6E106 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD312114A26B8278EC03DFDC /* CoachCore */;
+			targetProxy = 6B5366B454AB1832A9A7383E /* PBXContainerItemProxy */;
+		};
+		EB8610B1A431E5BBBD0F27E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DD312114A26B8278EC03DFDC /* CoachCore */;
+			targetProxy = 3FE0D9031C1428471FB86FFB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		21005E782251BC1B12D3FFE4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.uitests";
+				TEST_TARGET_NAME = CoachLab;
+			};
+			name = Debug;
+		};
+		36A3A5CB1E9749385B42BB51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APS_ENVIRONMENT = production;
+				CLANG_ENABLE_MODULES = YES;
+				CLOUDKIT_ENVIRONMENT = Production;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = FCAW792CJD;
+				ENABLE_TESTABILITY = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.3.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		380A1E66BDB64D63C1C811C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.tests";
+			};
+			name = Debug;
+		};
+		514011591363EB4DCD16C44F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.fulltests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoachLab.app/CoachLab";
+			};
+			name = Release;
+		};
+		5A22D932EEDC8803E0E3431E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.core";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E77AD8CA0BDABA05FCD63E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FullApp/CoachLab.entitlements;
+				INFOPLIST_FILE = FullApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = zh_CN;
+				INFOPLIST_KEY_CFBundleDisplayName = "听写复习本AI版";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab";
+				PRODUCT_NAME = CoachLab;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "FullApp/TypoReview-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		78A1465F4A4414BFFB57FA64 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.uitests";
+				TEST_TARGET_NAME = CoachLab;
+			};
+			name = Release;
+		};
+		8AB62324FF5B8F113E260113 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				APS_ENVIRONMENT = development;
+				CLANG_ENABLE_MODULES = YES;
+				CLOUDKIT_ENVIRONMENT = Development;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = FCAW792CJD;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 0.3.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8E666B383354F6BFCFD4CF25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEFINES_MODULE = YES;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.core";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		983411DB082D176F459AD32B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = FullApp/CoachLab.entitlements;
+				INFOPLIST_FILE = FullApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDevelopmentRegion = zh_CN;
+				INFOPLIST_KEY_CFBundleDisplayName = "听写复习本AI版";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab";
+				PRODUCT_NAME = CoachLab;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "FullApp/TypoReview-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B1459ED2BDCD1E425F6E1952 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.tests";
+			};
+			name = Release;
+		};
+		BD6B294395AFCD569BDFDDDF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				PRODUCT_BUNDLE_IDENTIFIER = "cc.xiaorsz.dictation-coach-lab.fulltests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoachLab.app/CoachLab";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0EF6510976EF9C8E8ACDBBA1 /* Build configuration list for PBXNativeTarget "CoachLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				983411DB082D176F459AD32B /* Debug */,
+				5E77AD8CA0BDABA05FCD63E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		1DF75B2B29E61163BB1E34AD /* Build configuration list for PBXProject "CoachLab" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8AB62324FF5B8F113E260113 /* Debug */,
+				36A3A5CB1E9749385B42BB51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		3CED26E72D79C4960C59C43B /* Build configuration list for PBXNativeTarget "CoachCore" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A22D932EEDC8803E0E3431E /* Debug */,
+				8E666B383354F6BFCFD4CF25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		45E56911B40FFF3C4333C966 /* Build configuration list for PBXNativeTarget "FullAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD6B294395AFCD569BDFDDDF /* Debug */,
+				514011591363EB4DCD16C44F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C456780FB2A35AEB19AF622A /* Build configuration list for PBXNativeTarget "CoachLabUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21005E782251BC1B12D3FFE4 /* Debug */,
+				78A1465F4A4414BFFB57FA64 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DC1B42EDF5E40EA2DC3C28D5 /* Build configuration list for PBXNativeTarget "CoachCoreTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				380A1E66BDB64D63C1C811C7 /* Debug */,
+				B1459ED2BDCD1E425F6E1952 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ECE6AEB0CFF50FC696D1C1C0 /* Project object */;
+}

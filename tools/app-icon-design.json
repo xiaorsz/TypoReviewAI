@@ -1,0 +1,16 @@
+{
+  "appName": "听写复习本AI版",
+  "engine": "Built-in image_gen",
+  "edit": "原图右下角加白色 AI 字样，不加底牌、背景框或新颜色",
+  "light": {
+    "reference": "../../错字复习/Assets.xcassets/AppIcon.appiconset/Icon-1024-Light.png",
+    "asset": "../FullApp/Assets.xcassets/AppIcon.appiconset/Icon-1024-Light.png",
+    "prompt": "Use case: precise-object-edit. Asset: iOS app icon, full-bleed square, opaque. The input is the ORIGINAL app icon and must remain unchanged except adding small text. Preserve the original pale grey-blue background, orange folded paper, white paper curl, orange checkmark, exact original composition, positions, proportions, edges, gradients, lighting and shadows. Add only the letters \"AI\" (uppercase A and I), white bold clean sans-serif, directly on the lower-right exposed orange paper area. Relative to a 1024 square: text bounding box approximately x=650..800, y=720..820, about 150px wide and 100px high. The white AI is a discreet edition marker that remains readable at app-icon size. Absolutely NO badge, NO rectangle, NO square, NO pill, NO outline container, NO blue, NO colored background behind the letters. White letters directly printed on the existing orange surface. Only an almost invisible soft shadow if essential for legibility; no 3D extra object. Do not add any other colors or redesign any part of the icon. Keep the orange checkmark and folded top-right corner unobstructed. No outer icon rounding, no app name, no watermark."
+  },
+  "dark": {
+    "reference": "../../错字复习/Assets.xcassets/AppIcon.appiconset/Icon-1024-dark.png",
+    "asset": "../FullApp/Assets.xcassets/AppIcon.appiconset/Icon-1024-dark.png",
+    "prompt": "Use case: precise-object-edit. Asset: dark-appearance iOS app icon, full-bleed opaque square. Image 1 is the EDIT TARGET: original icon with dark navy background and orange folded paper/checkmark. Image 2 is STYLE/POSITION SUPPORT ONLY: final light version with white AI letters printed directly on the lower-right orange paper. Add the same small white bold sans-serif letters \"AI\" directly on Image 1's lower-right exposed orange paper, matching the relative size, placement and type weight in Image 2. No badge, no background shape, no box, no pill, no blue plaque, no new colors. Preserve Image 1's existing dark navy background and its orange page/checkmark and folded white corner exactly, including original proportions, scale, positions, lighting and shadows. Do not copy the light background from Image 2. Change only by adding the white letters, on the orange surface, without obstructing the checkmark. No app name, no outer icon rounding, no watermark. Same recognizable original icon plus a minimal AI edition label."
+  },
+  "packaging": "Generated opaque RGB PNG outputs resampled to 1024x1024 using sips. Original app files are read-only and unchanged."
+}

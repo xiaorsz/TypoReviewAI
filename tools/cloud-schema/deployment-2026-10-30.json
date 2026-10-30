@@ -1,0 +1,33 @@
+{
+  "verifiedAt": "2026-10-30T10:50:23+08:00",
+  "teamID": "FCAW792CJD",
+  "containerIdentifier": "iCloud.cc.xiaorsz.dictation-coach-lab",
+  "schemaFile": "CoachLab.ckdb",
+  "schemaSHA256": "8b8cfe4cdc9b0b620e12f9861dc9f6c86ef10b59dcc73de46f0aaa09158a1e7f",
+  "userAuthorization": "Upload this schema to the experimental container, import Development and deploy Production; do not affect the original app.",
+  "validation": "Validation Passed",
+  "developmentImport": "The schema was successfully imported.",
+  "productionDeployment": "The schema is deployed to Production.",
+  "changes": {
+    "applicationRecordTypesCreated": 17,
+    "recordIDIndexesCreated": 17,
+    "securityRoleChanges": 0,
+    "deletions": 0,
+    "systemUsersUnchanged": true
+  },
+  "productionReadback": {
+    "totalRecordTypes": 18,
+    "aiPlanFieldsPresent": ["CD_coachSubjectRawValue", "CD_coachRationale", "CD_startedAt"],
+    "reviewDailyPlanRecordIDQueryable": true
+  },
+  "evidence": [
+    "../../artifacts/cloud-schema/deployment-diff.txt",
+    "../../artifacts/cloud-schema/cloudkit-deployed-success.jpg",
+    "../../artifacts/cloud-schema/production-ai-plan-readback.txt",
+    "../../artifacts/cloud-schema/cloudkit-production-ai-fields.jpg"
+  ],
+  "originalContainerOperated": false,
+  "learningRecordsOrCredentialsUploaded": false,
+  "newTestFlightBuildUploaded": false,
+  "deviceSyncVerified": false
+}

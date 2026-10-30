@@ -1,0 +1,41 @@
+.build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+__pycache__/
+*.pyc
+artifacts/
+.swiftpm/
+
+# Local builds, test reports and release packages
+build/
+*.xcarchive/
+*.xcresult/
+*.dSYM/
+*.ipa
+*.log
+
+# Credentials and signing assets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.p8
+*.cer
+*.mobileprovision
+
+# Runtime learning databases and backups (the bundled dictionary is public ECDICT)
+*.store
+*.store-*
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+!FullApp/Resources/EnglishDictionary.sqlite
+!LegacyPrototype/App/Resources/EnglishDictionary.sqlite
+lab.json
+Backups/
+CloudMigrationBackups/
