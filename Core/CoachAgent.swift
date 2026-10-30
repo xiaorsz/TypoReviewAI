@@ -22,12 +22,13 @@ public protocol ChatTransport: Sendable {
 }
 
 public struct DeepSeekTransport: ChatTransport {
-    public init() {}
+    private let planningToolsEnabled: Bool
+    public init(planningToolsEnabled: Bool = true) { self.planningToolsEnabled = planningToolsEnabled }
     public func complete(messages: [ChatMessage], model: String, apiKey: String) async throws -> ChatReply {
         struct Body: Encodable {
             let model: String
             let messages: [ChatMessage]
-            let tools = CoachToolDefinitions.all
+            let tools: [JSONValue]?
             let thinking = ["type": "disabled"]
             let temperature = 0.2
             let max_tokens = 1800
@@ -43,7 +44,8 @@ public struct DeepSeekTransport: ChatTransport {
         request.httpMethod = "POST"; request.timeoutInterval = 45
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.httpBody = try JSONEncoder().encode(Body(model: model, messages: messages))
+        request.httpBody = try JSONEncoder().encode(Body(model: model, messages: messages,
+            tools: planningToolsEnabled ? CoachToolDefinitions.all : nil))
         let configuration = URLSessionConfiguration.ephemeral
         configuration.timeoutIntervalForRequest = 45; configuration.timeoutIntervalForResource = 50
         let session = URLSession(configuration: configuration)

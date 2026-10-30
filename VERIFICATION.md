@@ -1,4 +1,155 @@
-# 当前版本：复习安排卡片 0.3.7 (11)
+# 当前版本：词语学习页面精简与朗读稳定 0.4.5 (18)
+
+验证日期：2026-10-30。仅修改 AI 实验版；0.4.5 (18) 已完成 Release 归档、上传及 Apple 处理，CoachLab 现有内部测试组显示“正在测试”，可在手机更新。
+
+- 修复开始／停止朗读时向 ScrollView 插入／移除状态栏引起的内容位移。状态与进度合并在同一行，空闲不显示额外提示，播放状态与错误在原位更新；作答页不显示朗读状态。
+- 词语、例句、中文翻译的听读／暂停／继续使用图标按钮，根据三种图标的最大自然尺寸布局，至少 44 点触控区域，保持宽高稳定并适配动态字体。
+- 状态标识仅挂在文字上，停止按钮保留独立辅助功能标识；空闲时隐藏停止按钮但保留尺寸，不能点击或被辅助功能读出。
+- 新增 `testLessonSpeechKeepsContentAndButtonFramesStable`，比较开始、暂停、继续前后的例句按钮 x/y/宽/高，以及停止前后的词语按钮位置。停止检查前先暂停语音，避免滚动期间自然播放结束与测试竞争。
+- 修复前 `.build/word-speech-layout-before.log` 确认该回归测试失败，复现朗读引起的位置变化。
+- 最终 `.build/word-speech-layout-phone-final.log`、`.build/word-speech-layout-ipad.log` 均返回 `TEST SUCCEEDED`：手机、平板各 2 项 UI 测试通过，包含布局稳定及进入答题停止、返回和退出。测试使用隔离示例，不调用真实 AI。截图位于 `artifacts/word-speech-layout-phone/`、`artifacts/word-speech-layout-ipad/`。
+- 手机测试通过后 Xcode 卡在诊断收集，仅终止该 diagnose 子进程后正常生成报告并以 0 退出，没有跳过断言。早期 `.build/word-speech-layout-phone.log` 是中间失败记录，不作为最终通过证据。
+- `verify_isolation.py` 确认原 App 的 158 个基线文件未变；`git diff --check` 通过。没有修改朗读内容、AI 请求、正式学习数据、调度、数据库或云端结构，未推送 GitHub；TestFlight 发布状态见下方发布证据。
+- 按用户要求完成三处精简：顶部进度与状态合为一行、减少页面上边距；词语／例句旁使用小喇叭；词义更醒目，组成／记忆提示与例句形成清晰层级。根据用户对暂停位置的反馈，例句播放／暂停放到句子正文右上侧，单词控件紧贴单词。原有系统配色、底部作答、返回与续学流程保留。
+- 最终视觉调整验证：`.build/word-compact-045-reading-final.log` 与 `.build/word-compact-045-ipad-reading-final.log` 的完整学习流程通过；`.build/word-compact-045-phone-verified.log` 和 `.build/word-compact-045-ipad-dark-large.log` 中的朗读交互及布局稳定两项均通过。手机浅色、平板深色且 accessibility-large 字号的截图已检查，平板恢复原浅色及 large 字号。
+- 截图位于 `artifacts/word-compact-045-reading-final/`、`artifacts/word-compact-045-phone-verified/`、`artifacts/word-compact-045-ipad-dark-large/`。位置断言按实际字形边界检查正文右侧、第一行及不遮挡文字，避免将段落的换行留白误判为控件错位；44 点尺寸检查允许坐标浮点误差。早期多项测试日志包含中间失败，不作为整套通过证据。
+- 本轮平板完整流程通过后，Xcode 诊断收集阻塞；仅结束 diagnose 子进程后正常生成结果并以 0 退出，没有停止测试进程。最终流程截图另存于 `artifacts/word-compact-045-ipad-reading-final/`。
+- 本轮没有改 AI 请求、选题、存储或正式成绩逻辑，0.4.5 (18) 已发布至 TestFlight。
+- 发布证据：`.build/testflight-045-18.log` 包含 `ARCHIVE SUCCEEDED`、`Upload succeeded` 和 `EXPORT SUCCEEDED`。实际归档及后台版本均为 0.4.5 (18)，应用标识 `cc.xiaorsz.dictation-coach-lab`、团队 `FCAW792CJD`、独立 iCloud 容器与 Production 环境核对通过。现有内部“测试组”已自动加入构建并显示“正在测试”；收据 `tools/releases/testflight-2026-10-30-0.4.5-18.json`，截图 `artifacts/testflight/0.4.5-18-testing.png`。未编辑测试说明、创建群组、上传原 App 或推送 GitHub。
+
+- GitHub 同步前复核：`swift test --scratch-path .build/GitHubPreflight` 的 57 项核心测试通过，日志 `.build/github-preflight-tests.log`；待发布差异未检出疑似 API Token 或私钥，构建产物、运行数据和签名资料由 `.gitignore` 排除。独立仓库原分支与 `origin/main` 一致，不覆盖远端提交。
+
+---
+
+# 历史版本：词语与例句朗读 0.4.4 (17)
+
+验证日期：2026-10-30。仅修改 AI 实验版；0.4.4 (17) 已完成 Release 归档、上传及 Apple 处理，独立 CoachLab 应用的现有内部测试组状态为“正在测试”，可在手机更新。
+
+- 学习页与学习记录详情新增独立的词语／单词、例句、中文翻译朗读按钮，使用既有系统语音选择与音频会话，按科目选择中文／英语。英文单词不追加词典释义。无新增 API 调用、麦克风权限、云端模型或成绩变更。
+- 同一按钮可暂停与继续；切换片段停止旧语音，不排队叠加。离开页面、切换词语、进入作答、后台与音频中断均停止，作答页不保留答案朗读入口。
+- 语音完成／取消回调回到主线程，并按 utterance 对象校验，忽略切换后的迟到回调；空内容、缺少语音、暂停失败明确回到可重试状态。
+- 新增 6 项原生测试，覆盖中英语音与原文、暂停继续、切换与迟到回调、停止释放、空内容／不可用语音及暂停失败。
+- `.build/word-speech-044-phone-confirmed.log` 返回 `TEST SUCCEEDED`：6 项原生语音测试及 2 项手机 UI 测试通过，覆盖朗读切换、暂停继续、作答停止，以及返回讲解、输入保留、只读结果和学习记录。测试使用隔离示例，不调用实际 AI；截图位于 `artifacts/word-speech-044-phone/`。
+- `python3 tools/verify_isolation.py` 确认原 App 158 个文件保持不变、仅实验版 iCloud 容器，`git diff --check` 通过。
+- 发布证据：`.build/testflight-044-17.log` 包含 `ARCHIVE SUCCEEDED`、`Upload succeeded` 和 `EXPORT SUCCEEDED`。实际归档为 0.4.4 (17)，应用标识 `cc.xiaorsz.dictation-coach-lab`、团队 `FCAW792CJD`，iCloud 容器为实验版独立容器，环境 Production。App Store Connect 现有内部测试组已自动加入该构建并显示“正在测试”；收据 `tools/releases/testflight-2026-10-30-0.4.4-17.json`，截图 `artifacts/testflight/0.4.4-17-testing.png`。未修改测试说明、创建群组、上传原 App 或推送 GitHub。
+- 初轮平板 UI 测试发现例句按钮宽屏点击区域不正确，改为明确标签尺寸和矩形点击区域后，`.build/word-speech-044-ipad-hitarea.log` 返回 `TEST SUCCEEDED`，验证词语→例句切换、暂停、继续和进入答题停止。截图位于 `artifacts/word-speech-044-ipad/`，已检查排版。测试通过后 Xcode 诊断收集阻塞，停止其 diagnose 子进程后正常生成结果，不跳过断言。
+- `.build/word-speech-044-ipad-final.log` 的 6 项原生语音测试通过；该轮 UI 点击失败已由上述最终测试修复。
+
+---
+
+# 历史版本：词语学习返回与界面统一 0.4.3 (16)
+
+验证日期：2026-10-30。只修改 AI 实验版；0.4.3 (16) 已完成 Release 归档、上传及 Apple 处理，独立 CoachLab 应用的现有内部测试组状态为“正在测试”，可在手机更新。
+
+- 学习页新增左上角返回按钮，右上角单独退出。作答返回当前讲解，结果页可回看讲解，后续词可回到前面已准备的词；首词讲解返回词语列表。全屏展示由入口绑定统一关闭。
+- 当前小组内保留未提交的输入；已提交答案只读回看，不重新作答或增加判定。作答后回看讲解再提交会标记已回看。退出后继续首个未完成词，不重复建组。
+- 学习记录使用明确的导航状态，整行含留白均可点击，修复平板上点击行中间不响应的问题。
+- 词语模块的入口、学习与记录页面统一使用首页的 systemGroupedBackground／secondarySystemGroupedBackground，以及应用主色、主次文字和分隔线颜色；移除单独的米色／墨绿背景方案，保留书签角色、便签层次和底部操作。
+- 没有修改正式成绩、题量、积分、调度、存储模型或云端结构。原 App 158 个文件哈希保持不变。
+
+## 验证证据
+
+- 配色统一后，`.build/word-style-unified-build.log` 构建通过；`.build/word-style-unified-phone.log` 和 `.build/word-style-unified-ipad-dark.log` 均返回 `TEST EXECUTE SUCCEEDED`，复核了讲解、作答、返回、退出续学和记录入口。浅色手机与深色平板截图已检查，保存在 `artifacts/word-style-unified-phone/` 和 `artifacts/word-style-unified-ipad-dark/`；平板已恢复原浅色设置。
+- `.build/word-back-043-phone-verified.log`：手机返回讲解、输入保留、已答词只读回看、退出续学和返回列表通过。
+- `.build/word-back-043-ipad-hitarea.log`：平板同一完整流程及返回后的学习记录入口通过；整行留白可点击。
+- `.build/word-back-043-phone-group.log`：最终构建完成五词后继续剩余两词、结束退出并查看记录通过，返回 `TEST EXECUTE SUCCEEDED`。测试结束后的模拟器诊断收集卡住，停止了该诊断子进程，Xcode 正常以 0 退出；没有终止测试进程或跳过断言。
+- 构建日志为 `.build/word-back-043-hitarea-build.log`；截图位于 `artifacts/word-back-043-phone/` 与 `artifacts/word-back-043-ipad/`，已检查左上返回、右上退出及只读结果入口。
+- 初轮平板测试暴露出记录行留白没有点击响应；修正整行点击区域后复测通过。测试使用隔离示例，不消费 API，不操作真实学习数据。`verify_isolation.py` 与 `git diff --check` 通过，已上传独立实验版 0.4.3 (16)，未推送 GitHub。
+
+- 发布证据：`.build/testflight-043-16.log` 包含 `ARCHIVE SUCCEEDED`、`Upload succeeded`、`EXPORT SUCCEEDED`。实际归档核对了版本、独立应用标识与 Production iCloud 容器；构建已自动加入现有内部测试组，组内状态为“正在测试”。收据见 `tools/releases/testflight-2026-10-30-0.4.3-16.json`，截图见 `artifacts/testflight/0.4.3-16-testing.png`。未创建测试组、编辑测试说明或操作原 App 的发布配置。
+
+---
+
+# 历史版本：词语小课堂 UI 0.4.2 (15)
+
+验证日期：2026-10-30。仅修改 AI 实验版；0.4.2 (15) 已完成 Release 归档、上传及 Apple 处理，独立 CoachLab 应用的现有内部测试组状态为“正在测试”，可在手机更新。
+
+## 界面调整
+
+- 入口、讲解、作答、反馈、完成及学习记录改用纸张与墨绿视觉；减少系统列表与表单排版，增加可伸缩的书签角色、轻微错落的词语标签和便签式结构说明。角色以 SwiftUI 绘制，无新增图片或外部服务。
+- 讲解改为全屏阅读，词义、结构、例句使用不同层次。主要作答、下一词及再学一组操作固定于底部，键盘弹出后提交仍可点击。
+- 支持深色、动态字体、标签换行及减少动态效果；原生导航与辅助功能名称保留。每组五词、自动判定、续学、去重、隔日验证及本地存储模型保持不变。
+
+## 验证
+
+- `.build/word-classroom-042-phone.log`：完整讲解、输入错误反馈及五词后继续剩余两词的两个 UI 流程通过，`TEST EXECUTE SUCCEEDED`。
+- `.build/word-classroom-042-ipad.log`：深色模式、放大至 extra-extra-extra-large 的平板完整讲解与键盘作答通过；测试后恢复模拟器原来的 light / large 设置。
+- 书签笑脸微调后，`.build/word-classroom-042-final.log` 再次构建并跑通完整手机流程，`TEST SUCCEEDED`。截图位于 `artifacts/word-classroom-042-final/` 及 `artifacts/word-classroom-042-ipad/`，已检查长讲解、词语换行、深色对比与键盘布局。
+- 丰富讲解截图使用 DEBUG 且同时带三个 UI 测试参数才启用的固定示例；只写入测试临时元数据，不使用真实 Key 或 API，不向真实学习库加入示例。Release 不包含此测试入口。
+- 原 App 158 个文件哈希不变，`git diff --check` 通过。已上传实验版 0.4.2 (15)，本轮未推送 GitHub，没有变更数据库或云端结构。
+
+- 发布证据：`.build/testflight-042-15.log` 包含 `ARCHIVE SUCCEEDED`、`Upload succeeded` 和 `EXPORT SUCCEEDED`。实际归档核对了 0.4.2 (15)、独立应用标识和自己的 Production iCloud 容器；已自动分发到现有内部组。收据见 `tools/releases/testflight-2026-10-30-0.4.2-15.json`，状态截图见 `artifacts/testflight/0.4.2-15-testing.png`。未创建新测试组或编辑测试说明，未操作原 App 的发布配置或 App Store Connect 应用。
+
+---
+
+# 历史版本：AI 词语讲解 0.4.1 (14)
+
+验证日期：2026-10-30。只修改独立 AI 实验版；0.4.1 (14) 已完成独立应用的 Release 归档、上传及 Apple 处理，内部测试组状态为“正在测试”。
+
+## 已实现
+
+- 首页移除独立的“AI 复习安排／规则复习安排”卡片及首页专用展示代码，只自然收拢间距，其他模块顺序不变。复习与预习入口保持原位置；AI 词语讲解、设置中的每日安排与执行记录继续保留。
+- 入口改为“AI 词语讲解”，每组最多 5 个重点词；学完可直接再推荐 5 个，不足时按实际数量展示，无更多新词时明确提示。同日去重，有未完成组优先继续。
+- 孩子独立查看词义、结构／拼写说明和例句，再进入隐藏讲解的屏幕输入页；一词一道题、自动判定，不再需要家长逐组核题或判定。英语例句附中文意思，保留大小写判定。不确定结构时允许省略，避免强行拆词。
+- 逐词按需生成，每词一次请求；失败可重试、停止、跳过或明确改用题库／词典基础讲解。已保存讲解不重复请求，组进度及基础模式选择跨重启保存。
+- 新学习组与讲解沿用独立本机 JSON，v2 兼容 v1 旧补练，日期精度不变。旧纸上补练只在历史查看，不阻塞新屏幕学习。来源校验、授权撤回、取消与恢复备份仍受保护；新作答不写正式成绩、积分、阶段或每日计划。
+- 推荐结果缓存供界面读取，历史分析在页面打开后执行；详情保留真实后续验证。没有新增云端模型。
+
+## 验证证据
+
+- 首页卡片移除后的专项界面验证：`.build/home-remove-plan-phone-final.log` 返回 `TEST SUCCEEDED`，`.build/home-remove-plan-ipad.log` 返回 `TEST EXECUTE SUCCEEDED`。覆盖首页无独立安排卡及详情按钮、五词讲解入口、七题预习与正式复习、设置中的每日安排及执行记录、自动同步诊断；未提交判定，正式记录仍为 21 条。手机首轮因执行记录按钮在屏幕外而中断，补足测试滚动定位后完整通过，无额外产品逻辑改动。手机和平板首页截图已检查，模块顺序保持不变且无空白占位。
+- `.build/word-lessons-phone.log`：57 项核心、174 项原生回归、5 项手机 UI 测试全部通过。新 UI 实际跑完首组 5 个与剩余 2 个，逐词输入自动反馈、验证答案隐藏和空输入禁用、完成后继续下一组，并查看后续记录。
+- 最终加入基础模式持久化与推荐缓存后，构建返回 `TEST BUILD SUCCEEDED`；57 项核心、18 项补练原生及手机完整流程复核通过，iPad 同一完整流程也通过，均返回 `TEST EXECUTE SUCCEEDED`。证据见 `.build/word-lessons-final-build.log`、`.build/word-lessons-final-phone.log`、`.build/word-lessons-final-ipad.log`。
+- 使用模拟模型响应验证 AI 讲解链路，界面测试走显式基础讲解，不读取真实 Key、不消费 API。实际模型讲解质量和家庭体验仍待试用，自动格式校验不能验证全部教学语义。
+- `python3 tools/verify_isolation.py` 确认原 App 158 个文件不变，只声明实验版自己的容器；`git diff --check` 通过。本轮未推送 GitHub；已上传独立实验版 0.4.1 (14)，未操作原 App 的发布配置或 App Store Connect 应用。
+
+- 发布证据：`.build/testflight-041-14.log` 包含 `ARCHIVE SUCCEEDED`、`Upload succeeded` 和 `EXPORT SUCCEEDED`；实际归档核对了独立 Bundle ID、版本和 Production iCloud 容器。构建已自动分发到现有内部测试组，没有创建新组或修改测试说明。收据见 `tools/releases/testflight-2026-10-30-0.4.1-14.json`，页面截图见 `artifacts/testflight/0.4.1-14-testing.png`。
+
+---
+
+# 历史版本：反复错题—针对性补练—隔日验证 0.4.0 (13)
+
+验证日期：2026-10-30。实现位于独立 AI 实验版，沿用原复习规则；未新增 SwiftData 模型或 CloudKit 字段，未修改原 App。
+
+## 已实现的闭环
+
+- 首页和 AI 教练页均可进入“反复错题与补练”。分析在后台读取当前授权科目的原生快照，采用原生记录的规范化规则；近 30 天至少错误 3 次且跨 2 天，按记录 ID 去重、按内容归并，支持语文字词与英语单词。结论可展开真实日期、模式和对错，不从频率推断具体错因。
+- 家长可补充困难和实际错写。单次 AI 请求包含本题与最近记录，不带安排工具；生成 2–3 道写法辨析／语境填空，程序校验题型、标准答案、选项和遮盖，再由家长确认才可开始。模型不可修改原答案、阶段、积分或每日复习计划。失败保留数据，可重试或显式使用非 AI 的本地基础练法。
+- 补练单独记录确认时间、逐题作答、是否查看答案及完成时间，可恢复进度。记录使用当前实验版自己的 `targeted-coach.json` 原子保存，日期按 Foundation 原始参考时间编码，保留原生亚秒精度。不得把已看过答案的当次补练成绩作为隔日验证。
+- 后续验证只读取补练完成之后、不同日期的正式复习／听写，排除同日、重练、重复 ID 和未来记录。不同两天正确仅提示改善迹象；任一后续错误提示调整，撤销记录后重新计算。正常判定、撤销、同步变化和回前台均会刷新已加载的结果，刷新合并延迟避免频繁扫描。
+- 新错误需要下一轮补练时，模型请求包含同一内容最近三轮的练法、练习内成绩及独立验证证据，要求说明沿用或调整理由。待确认、进行中及待验证的补练不重复建组。来源撤销／内容改变、恢复备份、授权变化、取消和退后台会阻止迟到写入；取消向当前网络任务传播。
+
+## 验证证据
+
+- `.build/targeted-040-regression.log`：53 项核心、167 项完整原生回归及 2 项手机 UI 流程通过；覆盖既有每日安排、反馈撤销、设置和新补练数据兼容。
+- 在加入上一轮练法上下文与取消任务管理后，`.build/targeted-040-complete.log` 再次通过 53 项核心、11 项补练原生集成及 1 项手机完整补练流程，返回 `TEST SUCCEEDED`。新增覆盖真实来源阈值、答案校验、亚秒日期重启恢复、重复生成、新错误不重复建组、网络失败、撤销、数据集替换、授权撤回、损坏文件保留、取消后重试，以及给模型分别传递练习内成功和后续独立失败证据。
+- `.build/targeted-040-ipad.log`：最终 iPad 完整流程通过。UI 使用 DEBUG 双参数启用的内存示例库，实际验证分析入口、家长核对、遮盖作答、补练完成与等待验证，不使用真实学习数据。
+- `.build/targeted-040-device-final.log`：Debug 真机目标签名构建 `BUILD SUCCEEDED`；产物核对版本 `0.4.0 (13)`。
+- 手机截图位于 `artifacts/targeted-040/`，平板截图位于 `artifacts/targeted-040-ipad/`；已检查实际布局。差异清单为 35 个原样副本、25 个适配副本和 10 个新增 Swift 文件。原 App 158 个文件哈希不变，`git diff --check` 通过。
+
+## 当前边界
+
+- 新补练元数据只在当前设备保存，尚未加入 iCloud 或备份导出；恢复备份会重置关联。原生题库、听写、正式复习及现有同步方式继续保留。
+- 使用模拟模型响应验证生成与反馈链路，没有读取真实 Key、消费 API 额度或完成真实家庭学习效果验证。AI 题目的语义质量仍需家长核对和真实试用；两个日期答对不能证明因果或永久掌握。
+- 2026-10-30 已通过 Release 归档与上传；App Store Connect 已处理完成 `0.4.0 (13)`，并自动加入现有内部“测试组”，组内构建状态已核对为“正在测试”。发布记录见 `tools/releases/testflight-2026-10-30-0.4.0-13.json`，上传日志见 `.build/testflight-040-13.log`；原 App 158 个文件再次核对不变。没有推送本轮源码到 GitHub，也未代用户在手机安装。
+- 额外测试说明的保存被自动审批拒绝，原因是授权范围仅包含上传构建。未发布说明，已放弃未保存草稿；不影响构建上传或既有内部组的安装资格。
+
+---
+
+# 历史版本：首页复习摘要与自动状态检查 0.3.8 (12)
+
+验证日期：2026-10-30。只修改 AI 实验版；数据库模型、已保存题单、判定与云端结构不变。
+
+- 按最新要求，首页完全移除 iCloud 同步卡片及相关按钮；状态查询、诊断和完整错误信息保留在“设置 → iCloud 存储”。CloudKit 默认自动同步，状态检查不是同步开关。
+- 修复旧服务器同步任务在未启用时仍排队、取消启动／回前台状态检查的问题；未启用时不创建任务，延迟结束后也先核对启用状态，再进行互斥操作。
+- AI 卡片保留题量、前三项预览和简短依据；完整题单按实际顺序显示在独立详情页，关闭后首页不展开。旧依据只作“依据待更新”提醒，提供“检查安排”入口，不替换原题单或编造选题原因。教练页使用相同详情组件。
+- 13 项同步／说明语义回归，以及同一完整 UI 流程在 iPhone 17 Pro 和 iPad Pro 13 英寸模拟器上均通过。最终 `.build/home-no-sync-038.log` 返回 `TEST SUCCEEDED`，结果位于 `.build/home-no-sync-038.xcresult`。
+- UI 流程验证首页没有同步提示、完整题单只出现在详情、进入 AI 教练和设置中的同步诊断；从未点击检查按钮，也能读到自动检查生成的本地数据统计。最终截图导出至 `artifacts/home-no-sync-038/`。测试使用隔离内存库及 DEBUG 双参数启用的示例题单，不访问真实学习数据。
+- 原 App 的 158 个文件哈希一致，`git diff --check` 通过。没有读取真实 Key、付费调用模型、上传 TestFlight 或推送本次修改到 GitHub；用户需要安装新构建才能看到变化。模拟器自动检查回归不能替代真实设备云端上传／下载验收。
+
+---
+
+# 历史版本：复习安排卡片 0.3.7 (11)
 
 验证日期：2026-10-30。只修改实验版的安排展示和生成说明提示词，不变更数据库模型、已保存计划、判定记录或云端结构。
 

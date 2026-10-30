@@ -40,6 +40,7 @@ struct RootTabView: View {
     @State private var selectedLegacyTab: LegacyTab = .home
     @State private var visitedLegacyTabs: Set<LegacyTab> = [.home]
     @State private var aiCoach = AICoachCoordinator()
+    @State private var targetedCoach = TargetedCoachCoordinator()
 
     private enum LegacyTab: Hashable {
         case home
@@ -68,8 +69,20 @@ struct RootTabView: View {
             }
         }
         .environment(aiCoach)
+        .environment(targetedCoach)
         .onReceive(NotificationCenter.default.publisher(for: AICoachSignals.changed)) { notification in
             aiCoach.receive(notification, context: modelContext, settings: appSettingsStore)
+            if let action = notification.userInfo?["action"] as? String,
+               ["review", "reviewUndo", "dictation", "restore", "manualEdit", "deleted"].contains(action), let store = aiCoach.store {
+                targetedCoach.dataChanged(action: action, context: modelContext,
+                    datasetID: store.state.datasetID, subject: store.state.configuration.subject)
+            }
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .NSPersistentStoreRemoteChange)) { _ in
+            if targetedCoach.hasLoaded, let store = aiCoach.store {
+                targetedCoach.dataChanged(action: "remote", context: modelContext,
+                    datasetID: store.state.datasetID, subject: store.state.configuration.subject)
+            }
         }
         .onChange(of: selectedLegacyTab) { _, newTab in
             markLegacyTabVisited(newTab)
@@ -78,6 +91,9 @@ struct RootTabView: View {
             #endif
         }
         .task {
+            #if DEBUG
+            TargetedCoachUITestSeed.seed(in: modelContext)
+            #endif
             aiCoach.bootstrap(context: modelContext, settings: appSettingsStore)
             aiCoach.run(context: modelContext, settings: appSettingsStore)
             #if DEBUG
@@ -104,6 +120,10 @@ struct RootTabView: View {
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active {
                 aiCoach.run(context: modelContext, settings: appSettingsStore)
+                if targetedCoach.hasLoaded, let store = aiCoach.store {
+                    targetedCoach.dataChanged(action: "foreground", context: modelContext,
+                        datasetID: store.state.datasetID, subject: store.state.configuration.subject)
+                }
                 endCloudKitSettleBackgroundTask()
                 mediaLibraryStore.startObservingChangesIfNeeded()
                 mediaLibraryStore.reload()
@@ -113,6 +133,7 @@ struct RootTabView: View {
                 scheduleServerSync(delayNanoseconds: 1_500_000_000)
             } else {
                 aiCoach.cancel()
+                targetedCoach.cancel()
                 Task { @MainActor in
                     await ServerSyncCoordinator.shared.uploadChanges(
                         from: modelContext,
@@ -370,10 +391,13 @@ struct RootTabView: View {
     }
 
     private func scheduleServerSync(delayNanoseconds: UInt64) {
+        // The independent CloudKit app has no server sync configured. Do not
+        // enqueue a disabled path that cancels the automatic account check.
+        guard ServerSyncCoordinator.shared.isEnabled else { return }
         serverPullTask?.cancel()
         serverPullTask = Task { @MainActor in
             try? await Task.sleep(nanoseconds: delayNanoseconds)
-            guard !Task.isCancelled, canRefreshLiveAppState else { return }
+            guard !Task.isCancelled, canRefreshLiveAppState, ServerSyncCoordinator.shared.isEnabled else { return }
             refreshAppStateTask?.cancel()
             remoteChangeDebounceTask?.cancel()
             startupMaintenanceTask?.cancel()

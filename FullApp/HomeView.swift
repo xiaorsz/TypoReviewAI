@@ -46,7 +46,6 @@ struct HomeView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.colorScheme) private var colorScheme
-    @Environment(SyncStatusStore.self) private var syncStatusStore: SyncStatusStore
     @Environment(AppSettingsStore.self) private var appSettingsStore
     
     @State private var showingReviewPreview = false
@@ -1008,14 +1007,19 @@ struct HomeView: View {
 
                     dailyQuoteCard
 
-                    if !AppStorePreviewMode.isEnabled && syncStatusStore.syncNoticeKind != .ready {
-                        syncStatusSummaryCard
+                    NavigationLink { TargetedCoachView() } label: {
+                        HStack(spacing: 12) {
+                            Image(systemName: "target").foregroundStyle(Color.accentColor)
+                            VStack(alignment: .leading, spacing: 4) {
+                                Text("AI 词语讲解").font(.headline)
+                                Text("每组 5 个重点词，讲意思、看结构，再试一试").font(.caption).foregroundStyle(.secondary)
+                            }
+                            Spacer()
+                            Image(systemName: "chevron.right").font(.caption).foregroundStyle(.secondary)
+                        }
+                        .padding(16).background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
                     }
-
-                    reviewPlanSummary(snapshot)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(14)
-                    .background(Color(uiColor: .secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 16))
+                    .buttonStyle(.plain).accessibilityIdentifier("targeted.home")
 
                     todayScheduleCard(snapshot)
 
@@ -1056,20 +1060,6 @@ struct HomeView: View {
             .navigationTitle("首页")
             .navigationBarTitleDisplayMode(.large)
         }
-    }
-
-    private func reviewPlanSummary(_ snapshot: HomeDashboardSnapshot) -> some View {
-        #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("--ui-testing")
-            && ProcessInfo.processInfo.arguments.contains("--ui-testing-coach-summary") {
-            return ReviewPlanSummaryView(title: "AI 复习安排", subtitle: "今日 · 待复习 5 题",
-                rationale: "本次判定的7个错题 ID不在已查询题库分页中，无法补练。",
-                contents: ["moustache", "pyramid", "direction", "athlete", "Portugal"])
-        }
-        #endif
-        return ReviewPlanSummaryView(title: snapshot.reviewPlanSource,
-            subtitle: snapshot.dueItems.isEmpty ? "今日 · 暂无待复习内容" : "今日 · 待复习 \(snapshot.dueItems.count) 题",
-            rationale: snapshot.reviewPlanRationale, contents: snapshot.dueItems.map(\.content))
     }
 
     private var lightweightLoadingHomeView: some View {
@@ -1623,6 +1613,7 @@ struct HomeView: View {
         }
         .buttonStyle(.plain)
         .disabled(snapshot.dueItems.isEmpty)
+        .accessibilityIdentifier("home.review.start")
     }
 
     private func reviewEntryLabel(_ snapshot: HomeDashboardSnapshot) -> some View {
@@ -1659,6 +1650,7 @@ struct HomeView: View {
                     .background(.white.opacity(0.25), in: Capsule())
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier("home.review.preview")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
@@ -2676,59 +2668,7 @@ struct HomeView: View {
         }
     }
 
-    private var syncStatusSummaryCard: some View {
-        let style = syncSummaryStyle
 
-        return VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 8) {
-                Image(systemName: style.symbol)
-                    .foregroundStyle(style.tint)
-                Text(syncStatusStore.syncNoticeTitle)
-                    .font(.headline)
-                    .foregroundStyle(style.tint)
-            }
-
-            Text(syncStatusStore.syncNoticeMessage)
-                .font(.caption)
-                .foregroundStyle(.secondary)
-
-            HStack(spacing: 8) {
-                Image(systemName: syncStatusStore.isUsingLocalFallback ? "externaldrive.fill.badge.xmark" : "externaldrive.fill.badge.checkmark")
-                    .foregroundStyle(syncStatusStore.isUsingLocalFallback ? .red : .green)
-                Text(syncStatusStore.storageModeTitle)
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(syncStatusStore.isUsingLocalFallback ? .red : .green)
-            }
-
-            if !syncStatusStore.cloudKitInitializationError.isEmpty {
-                Text(syncStatusStore.cloudKitInitializationError)
-                    .font(.caption2.monospaced())
-                    .foregroundStyle(.red.opacity(0.82))
-                    .textSelection(.enabled)
-                    .padding(.top, 4)
-            }
-        }
-        .padding(16)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(style.background, in: RoundedRectangle(cornerRadius: 18))
-        .overlay(
-            RoundedRectangle(cornerRadius: 18)
-                .stroke(style.tint.opacity(0.1), lineWidth: 1)
-        )
-    }
-
-    private var syncSummaryStyle: (symbol: String, tint: Color, background: Color) {
-        switch syncStatusStore.syncNoticeKind {
-        case .checking:
-            return ("arrow.triangle.2.circlepath", .cyan, .cyan.opacity(0.08))
-        case .ready:
-            return ("checkmark.icloud.fill", .green, .green.opacity(0.08))
-        case .caution:
-            return ("exclamationmark.icloud.fill", .orange, .orange.opacity(0.08))
-        case .blocked:
-            return ("icloud.slash.fill", .red, .red.opacity(0.08))
-        }
-    }
 }
 
 private struct HomeStatGridCard: View {

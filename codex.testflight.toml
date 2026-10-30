@@ -1,0 +1,7 @@
+[testflight]
+# Independent AI app only. Never use the parent project's release config.
+project = "CoachLab.xcodeproj"
+scheme = "CoachLab"
+team_id = "FCAW792CJD"
+configuration = "Release"
+xcodegen_command = "xcodegen generate --spec project.yml"

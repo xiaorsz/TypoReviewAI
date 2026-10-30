@@ -13,11 +13,11 @@ struct CoachNativeSnapshot: Sendable {
 
     /// Call from a background task. The context is created and used entirely on
     /// the caller's executor, under the same gate as destructive backup restore.
-    nonisolated static func load(from container: ModelContainer) throws -> CoachNativeSnapshot {
+    nonisolated static func load(from container: ModelContainer, canonicalRecords: Bool = false) throws -> CoachNativeSnapshot {
         try PersistentStoreAccessGate.withAccess {
             let context = ModelContext(container)
             context.autosaveEnabled = false
-            return try read(from: context)
+            return try read(from: context, canonicalRecords: canonicalRecords)
         }
     }
 
@@ -29,7 +29,7 @@ struct CoachNativeSnapshot: Sendable {
         }
     }
 
-    nonisolated private static func read(from context: ModelContext) throws -> CoachNativeSnapshot {
+    nonisolated private static func read(from context: ModelContext, canonicalRecords: Bool = false) throws -> CoachNativeSnapshot {
         let items = try context.fetch(FetchDescriptor<ReviewItem>()).map { native in
             var item = CoachCore.ReviewItem(id: native.id, type: native.typeRawValue,
                 content: native.content, prompt: native.prompt, now: native.createdAt)
@@ -48,7 +48,8 @@ struct CoachNativeSnapshot: Sendable {
             item.updatedAt = native.updatedAt
             return item
         }
-        let records = try context.fetch(FetchDescriptor<ReviewRecord>()).map { native in
+        let nativeRecords = try context.fetch(FetchDescriptor<ReviewRecord>())
+        let records = (canonicalRecords ? ReviewRecord.canonicalRecords(nativeRecords) : nativeRecords).map { native in
             var record = CoachCore.ReviewRecord(id: native.id, itemID: native.itemID,
                 correct: native.resultRawValue == ReviewResult.correct.rawValue,
                 oldStage: native.oldStage, newStage: native.newStage, now: native.reviewedAt)

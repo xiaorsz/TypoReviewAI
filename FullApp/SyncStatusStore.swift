@@ -335,14 +335,17 @@ final class SyncStatusStore {
         if serverSyncEnabled {
             return .ready
         }
-        if isRefreshing || lastRefreshAt == nil {
-            return .checking
-        }
-
         if !cloudKitEnabled {
             return .blocked
         }
-
+        switch cloudAccountState {
+        case .noAccount, .restricted:
+            return .blocked
+        default:
+            break
+        }
+        if unresolvedCloudKitFailure != nil { return .caution }
+        if isRefreshing || lastRefreshAt == nil { return .checking }
         switch cloudAccountState {
         case .available:
             return .ready
@@ -353,19 +356,28 @@ final class SyncStatusStore {
         }
     }
 
+    /// A later download cannot hide an upload failure (or vice versa).
+    /// Only a later successful event of the same type clears that failure.
+    var unresolvedCloudKitFailure: CloudKitSyncEvent? {
+        var seenTypes = Set<String>()
+        return recentCloudKitEvents.sorted { $0.timestamp > $1.timestamp }.first { event in
+            seenTypes.insert(event.typeName).inserted && !event.succeeded
+        }
+    }
+
     var syncNoticeTitle: String {
         if serverSyncEnabled {
             return "这台设备已连接上海服务器同步"
         }
         switch syncNoticeKind {
         case .checking:
-            return "这台设备的同步状态还在检查中"
+            return isRefreshing ? "正在检查 iCloud" : "iCloud 待检查"
         case .ready:
-            return "这台设备的同步前提看起来正常"
+            return "iCloud 账户可用"
         case .caution:
-            return "这台设备的同步现在不太稳定"
+            return unresolvedCloudKitFailure == nil ? "iCloud 暂不可用" : "iCloud 同步待恢复"
         case .blocked:
-            return "这台设备当前不会和别的设备同步"
+            return isUsingLocalFallback ? "iCloud 未连接，暂存本机" : "iCloud 未连接"
         }
     }
 
@@ -374,22 +386,25 @@ final class SyncStatusStore {
             return "题库、复习记录、任务、听写计划、日程和积分会在家庭账号的设备之间同步。"
         }
         if !cloudKitEnabled {
-            return "当前已经退回本地存储模式。除非 CloudKit 初始化恢复成功，否则这台设备上的改动不会同步到 iPad 或 iPhone。"
+            return "数据保存在本机，恢复连接后才能同步到其他设备。"
         }
-
+        if case .noAccount = cloudAccountState { return "请在系统设置中登录 iCloud 并允许本 App 使用。" }
+        if case .restricted = cloudAccountState { return "iCloud 访问受限，请检查系统设置。" }
+        if unresolvedCloudKitFailure != nil { return "最近同步未完成，可在详情中查看原因。" }
+        if isRefreshing { return "正在确认账户状态，不影响本机练习。" }
         switch cloudAccountState {
         case .unknown:
-            return "请点一次“立即检查”，确认这台设备有没有真正连上 iCloud。"
+            return "尚未确认连接状态，不影响本机练习。"
         case .available:
             return "CloudKit 已启用，iCloud 账户也可用。这只说明同步前提正常，不代表最近的云端上传、下载已经成功完成。"
         case .noAccount:
-            return "这台设备没有登录 iCloud，或者当前 Apple ID 没有开启 iCloud，所以它不会收到别的设备的数据。"
+            return "请在系统设置中登录 iCloud 并允许本 App 使用。"
         case .restricted:
-            return "系统限制了这台设备访问 iCloud，常见于家长控制、企业设备策略，或者系统层面的云服务限制。"
+            return "iCloud 访问受限，请检查系统设置。"
         case .temporarilyUnavailable:
-            return "iCloud 当前暂时不可用。通常等一会儿、切一下网络，或者把 App 重新拉到前台后会恢复。"
-        case .couldNotDetermine(let message):
-            return "系统没能确认这台设备的 CloudKit 状态。\(message)"
+            return "稍后重试，或检查网络连接。"
+        case .couldNotDetermine:
+            return "暂未确认连接状态，请重试或查看详情。"
         }
     }
 

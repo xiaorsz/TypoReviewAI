@@ -71,6 +71,10 @@
     "DailyReviewPlanner.swift",
     "LabAPIKeyController.swift",
     "LabKeychain.swift",
-    "ReviewPlanSummaryView.swift"
+    "ReviewPlanSummaryView.swift",
+    "TargetedCoachCoordinator.swift",
+    "TargetedCoachView.swift",
+    "WordLessonStyle.swift",
+    "WordLessonSpeech.swift"
   ]
 }

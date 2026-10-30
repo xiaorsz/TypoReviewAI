@@ -3,6 +3,49 @@ import CloudKit
 @testable import CoachLab
 
 @MainActor final class CloudSyncDiagnosticTests: XCTestCase {
+    func testUncheckedStatusDoesNotPretendCheckIsRunningAndFallbackIsImmediatelyBlocked() {
+        let store = SyncStatusStore()
+        store.cloudKitEnabled = true
+        XCTAssertEqual(store.syncNoticeTitle, "iCloud 待检查")
+        XCTAssertFalse(store.syncNoticeMessage.contains("立即检查"))
+        store.isRefreshing = true
+        XCTAssertEqual(store.syncNoticeTitle, "正在检查 iCloud")
+        store.cloudKitEnabled = false
+        store.cloudKitInitializationError = "initialization failed"
+        XCTAssertEqual(store.syncNoticeKind, .blocked)
+        XCTAssertEqual(store.syncNoticeTitle, "iCloud 未连接，暂存本机")
+    }
+
+    func testAvailableAccountDoesNotHideUnresolvedUploadFailure() {
+        let store = SyncStatusStore()
+        store.cloudKitEnabled = true
+        store.cloudAccountState = .available
+        store.lastRefreshAt = .now
+        let start = Date(timeIntervalSince1970: 1000)
+        store.recentCloudKitEvents = [
+            .init(timestamp: start.addingTimeInterval(2), typeName: "下载", succeeded: true, errorDescription: nil),
+            .init(timestamp: start, typeName: "上传", succeeded: false, errorDescription: "failed")
+        ]
+        XCTAssertEqual(store.syncNoticeKind, .caution)
+        XCTAssertEqual(store.syncNoticeTitle, "iCloud 同步待恢复")
+        XCTAssertTrue(store.syncNoticeMessage.contains("未完成"))
+        store.recentCloudKitEvents.insert(.init(timestamp: start.addingTimeInterval(3),
+            typeName: "上传", succeeded: true, errorDescription: nil), at: 0)
+        XCTAssertNil(store.unresolvedCloudKitFailure)
+        XCTAssertEqual(store.syncNoticeKind, .ready)
+        XCTAssertFalse(store.syncNoticeTitle.contains("同步成功"))
+    }
+
+    func testAccountRestrictionTakesPriorityOverRefreshAndEventFailure() {
+        let store = SyncStatusStore()
+        store.cloudKitEnabled = true
+        store.isRefreshing = true
+        store.cloudAccountState = .noAccount
+        store.recentCloudKitEvents = [.init(timestamp: .now, typeName: "初始化", succeeded: false, errorDescription: "failed")]
+        XCTAssertEqual(store.syncNoticeKind, .blocked)
+        XCTAssertTrue(store.syncNoticeMessage.contains("登录 iCloud"))
+    }
+
     func testProbeDefinitionsCoverEveryPersistedModelAndNewAIPlanFields() throws {
         let records = SyncStatusStore.cloudKitDiagnosticProbeRecords(zoneID: CKRecordZone.ID(zoneName: "local-test"))
         let expected = Set([

@@ -26,8 +26,12 @@ struct AICoachView: View {
         Form {
             Section {
                 Label("AI 家庭复习教练", systemImage: "sparkles").font(.title3.bold())
-                Text("AI 统一选择每天的复习内容和顺序，沿用原有复习间隔。听写保留为独立录入入口，判定后进入后续复习。AI 不可用时按原规则安排。")
+                Text("孩子自己看词义与结构讲解，在屏幕作答，再跟进隔日表现。每日选题继续沿用原有复习间隔，AI 不可用时按原规则安排。")
                     .font(.subheadline).foregroundStyle(.secondary)
+            }
+            Section {
+                NavigationLink { TargetedCoachView() } label: { Label("AI 词语讲解 · 每组 5 个", systemImage: "target") }
+                    .accessibilityIdentifier("targeted.coach")
             }
             Section {
                 Picker("科目", selection: $configuration.subject) { ForEach(CoachCore.Subject.allCases) { Text($0.title).tag($0) } }
