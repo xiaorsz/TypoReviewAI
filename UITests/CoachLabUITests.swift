@@ -77,6 +77,12 @@ final class CoachLabUITests: XCTestCase {
         XCTAssertGreaterThanOrEqual(wordSpeech.frame.width, 43.5, "44 点触控区域允许坐标换算的小数误差")
         XCTAssertLessThanOrEqual(wordSpeech.frame.minX - word.frame.maxX, 16, "朗读按钮应紧邻词语")
         XCTAssertFalse(app.staticTexts["点喇叭，听听怎么读"].exists)
+        let memory = app.staticTexts["targeted.soundMemory"]
+        for _ in 0..<4 where !memory.isHittable { app.swipeUp() }
+        XCTAssertTrue(memory.isHittable)
+        XCTAssertTrue(app.staticTexts["组成与记忆"].exists)
+        XCTAssertTrue(app.staticTexts["按读音记"].exists)
+        XCTAssertEqual(app.staticTexts["targeted.pronunciation"].label, "biàn bié")
         saveScreenshot(app, "21-词义与记忆便签")
         let example = app.staticTexts["放进句子里"]
         for _ in 0..<5 where !example.isHittable { app.swipeUp() }
@@ -94,6 +100,7 @@ final class CoachLabUITests: XCTestCase {
         XCTAssertTrue(attempt.isHittable); attempt.tap()
         let input = app.textFields["targeted.answer"]
         XCTAssertTrue(input.waitForExistence(timeout: 10)); XCTAssertFalse(word.isHittable)
+        XCTAssertFalse(memory.exists, "进入作答后读音与音节记忆提示也应隐藏")
         input.tap(); input.typeText("分辨")
         saveScreenshot(app, "23-独立作答与键盘")
         app.buttons["targeted.back"].tap()

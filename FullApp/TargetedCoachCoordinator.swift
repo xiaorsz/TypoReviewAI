@@ -11,6 +11,8 @@ import CoachCore
     private(set) var isLoading = false
     private(set) var isGenerating = false
     private(set) var isSaving = false
+    private(set) var prefetchingTargetID: UUID?
+    private(set) var lessonPreparationErrors: [UUID: String] = [:]
     private(set) var error: String?
     private(set) var notice: String?
     private var source: CoachNativeSnapshot?
@@ -18,6 +20,9 @@ import CoachCore
     @ObservationIgnored private var scheduledRefresh: Task<Void, Never>?
     @ObservationIgnored private var generationTask: Task<Void, Never>?
     private var generationTaskID: UUID?
+    @ObservationIgnored private var prefetchTask: Task<Void, Never>?
+    private var prefetchTaskID: UUID?
+    private var lessonEpoch = UUID()
     private let fileURL: URL
     private let transport: any ChatTransport
     var hasLoaded: Bool { state != nil }
@@ -36,7 +41,12 @@ import CoachCore
     func cancel() {
         scheduledRefresh?.cancel(); scheduledRefresh = nil
         generationTask?.cancel(); generationTask = nil; generationTaskID = nil
+        cancelPrefetch(); lessonEpoch = UUID()
         revision = UUID(); isLoading = false; isGenerating = false; isSaving = false
+    }
+
+    private func cancelPrefetch() {
+        prefetchTask?.cancel(); prefetchTask = nil; prefetchTaskID = nil; prefetchingTargetID = nil
     }
 
     func refresh(context: ModelContext, datasetID: UUID, subject: Subject, now: Date = .now) async {
@@ -70,6 +80,7 @@ import CoachCore
 
     func dataChanged(action: String, context: ModelContext, datasetID: UUID, subject: Subject) {
         cancel()
+        lessonPreparationErrors = [:]
         if action == "restore" {
             source = nil; findings = []; recommendations = []
             do { try persist(TargetedCoachingState(datasetID: datasetID)) }
@@ -224,7 +235,14 @@ import CoachCore
 
     func prepareLesson(groupID: UUID, targetID: UUID, basic: Bool = false, context: ModelContext,
                        coach: AICoachCoordinator, apiKey: String? = nil, now: Date = .now) async {
+        guard state?.groups.first(where: { $0.id == groupID })?.targets.contains(where: {
+            $0.id == targetID && !$0.skipped && $0.interventionID == nil
+        }) == true else { return }
+        if !basic, prefetchingTargetID == targetID, let task = prefetchTask {
+            await task.value; return
+        }
         guard generationTask == nil, !isLoading, !isGenerating, !isSaving else { return }
+        cancelPrefetch()
         let taskID = UUID(); generationTaskID = taskID
         let task = Task { await prepareLessonImpl(groupID: groupID, targetID: targetID, basic: basic,
             context: context, coach: coach, apiKey: apiKey, now: now) }
@@ -233,24 +251,58 @@ import CoachCore
         if generationTaskID == taskID { generationTask = nil; generationTaskID = nil }
     }
 
+    /// Keep only the immediate next unskipped word in flight; never prefetch the rest of the group.
+    @discardableResult
+    func prefetchNextLesson(groupID: UUID, after targetID: UUID, context: ModelContext,
+                            coach: AICoachCoordinator, apiKey: String? = nil, now: Date = .now) -> Task<Void, Never>? {
+        guard !isLoading, !isGenerating, !isSaving, coach.store?.state.configuration.isEnabled == true,
+              let group = state?.groups.first(where: { $0.id == groupID }), group.usesBasic != true,
+              let position = group.targets.firstIndex(where: { $0.id == targetID }),
+              let current = state?.interventions.first(where: { $0.id == group.targets[position].interventionID }),
+              report(for: current, now: now).state != .invalidated else { return nil }
+        let next = group.targets.dropFirst(position + 1).first { !$0.skipped }
+        if prefetchingTargetID == next?.id { return prefetchTask }
+        cancelPrefetch()
+        guard let next, next.interventionID == nil, lessonPreparationErrors[next.id] == nil else { return nil }
+        let taskID = UUID(); prefetchTaskID = taskID; prefetchingTargetID = next.id
+        prefetchTask = Task {
+            await prepareLessonImpl(groupID: groupID, targetID: next.id, basic: false,
+                context: context, coach: coach, apiKey: apiKey, now: now, backgroundRequestID: taskID)
+            if prefetchTaskID == taskID { prefetchTask = nil; prefetchTaskID = nil; prefetchingTargetID = nil }
+        }
+        return prefetchTask
+    }
+
     private func prepareLessonImpl(groupID: UUID, targetID: UUID, basic: Bool, context: ModelContext,
-                                   coach: AICoachCoordinator, apiKey: String?, now: Date) async {
+                                   coach: AICoachCoordinator, apiKey: String?, now: Date,
+                                   backgroundRequestID: UUID? = nil) async {
         guard let initial = state, let group = initial.groups.first(where: { $0.id == groupID }),
               let target = group.targets.first(where: { $0.id == targetID }), !target.skipped, target.interventionID == nil else { return }
+        let background = backgroundRequestID != nil
+        func fail(_ message: String) {
+            lessonPreparationErrors[targetID] = message
+            if !background { error = message }
+        }
         guard let finding = findings.first(where: { $0.id == targetID }), finding.item.identity == target.identity,
               finding.item.content == target.content,
               let config = coach.store?.state.configuration, config.subject.contains(target.type),
-              coach.store?.state.datasetID == initial.datasetID else { error = "词语或学习范围已变化，请跳过这一词或返回刷新。"; return }
-        guard basic || config.isEnabled else { error = "AI 尚未开启，可使用基础讲解，或到设置请家长完成首次配置。"; return }
-        let token = UUID(); revision = token; isGenerating = true; error = nil; notice = nil
-        defer { if revision == token { isGenerating = false } }
+              coach.store?.state.datasetID == initial.datasetID else { fail("词语或学习范围已变化，请跳过这一词或返回刷新。"); return }
+        guard basic || config.isEnabled else { fail("AI 尚未开启，可使用基础讲解，或到设置请家长完成首次配置。"); return }
+        let token = UUID(), epoch = lessonEpoch
+        if !background { revision = token; isGenerating = true; error = nil; notice = nil }
+        lessonPreparationErrors[targetID] = nil
+        defer { if !background, revision == token { isGenerating = false } }
+        func isCurrent() -> Bool {
+            !Task.isCancelled && lessonEpoch == epoch
+                && (background ? prefetchTaskID == backgroundRequestID : revision == token)
+        }
         do {
             let meaning = await Task.detached(priority: .utility) {
                 let hint = finding.item.prompt.trimmingCharacters(in: .whitespacesAndNewlines)
                 if !hint.isEmpty { return hint }
                 return finding.item.typeRawValue == "单词" ? (EnglishGlossService.shared.lookup(text: finding.item.content)?.translation ?? "") : ""
             }.value
-            guard revision == token, !Task.isCancelled else { return }
+            guard isCurrent() else { return }
             let draft: CoachingIntervention
             if basic {
                 draft = try TargetedCoaching.basicLesson(finding, meaning: meaning, now: now)
@@ -258,7 +310,7 @@ import CoachCore
                 let key: String
                 if let apiKey { key = apiKey }
                 else { key = try await Task.detached(priority: .utility) { try LabKeychain.load() }.value }
-                guard revision == token, !Task.isCancelled, coach.store?.state.configuration == config else { return }
+                guard isCurrent(), coach.store?.state.configuration == config else { return }
                 guard !key.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else { throw LabError.invalid("AI 还未配置好，可以先用基础讲解。") }
                 let previous = initial.interventions.filter { $0.identity == target.identity && report(for: $0, now: now).state != .invalidated }
                     .suffix(3).map { CoachingFollowUpContext(intervention: $0, report: report(for: $0, now: now)) }
@@ -269,23 +321,27 @@ import CoachCore
                 }
                 draft = try TargetedCoaching.lessonDraft(raw, finding: finding, now: now)
             }
-            guard revision == token, !Task.isCancelled, coach.store?.state.configuration == config,
+            guard isCurrent(), coach.store?.state.configuration == config,
                   coach.store?.state.datasetID == initial.datasetID else { return }
             let container = context.container
             let fresh = try await Task.detached { try CoachNativeSnapshot.load(from: container, canonicalRecords: true) }.value
-            guard revision == token, !Task.isCancelled, coach.store?.state.configuration == config,
+            guard isCurrent(), coach.store?.state.configuration == config,
                   coach.store?.state.datasetID == initial.datasetID else { return }
             guard TargetedCoaching.sourceIsValid(draft, items: fresh.items, records: fresh.records) else {
                 throw LabError.invalid("词语或原判定已变化，请跳过这一词或返回刷新。")
             }
-            guard var next = state, let gi = next.groups.firstIndex(where: { $0.id == groupID }),
+            // Read the latest state after awaiting so a foreground answer is never overwritten.
+            guard var next = state, next.datasetID == initial.datasetID,
+                  let gi = next.groups.firstIndex(where: { $0.id == groupID }),
                   let ti = next.groups[gi].targets.firstIndex(where: { $0.id == targetID }),
-                  next.groups[gi].targets[ti].interventionID == nil, !next.groups[gi].targets[ti].skipped else { return }
+                  next.groups[gi].targets[ti].interventionID == nil, !next.groups[gi].targets[ti].skipped,
+                  next.groups[gi].targets[ti].identity == draft.identity,
+                  next.groups[gi].targets[ti].content == draft.content else { return }
             next.interventions.append(draft); next.groups[gi].targets[ti].interventionID = draft.id
             next.groups[gi].usesBasic = basic
             try persist(next); source = fresh
         } catch {
-            if revision == token { self.error = "这一词暂时没准备好：" + error.localizedDescription }
+            if isCurrent() { fail("这一词暂时没准备好：" + error.localizedDescription) }
         }
     }
 
@@ -345,7 +401,9 @@ extension TargetedCoachCoordinator {
             structure: "“辨”有分辨、分清的意思；“别”也有区别的意思。两个字放在一起，都是在说把不同的事物分清楚。注意“辨”字中间的部分。",
             example: arguments.contains("--ui-testing-targeted-speech")
                 ? "观察叶子的形状和颜色，可以帮助我们辨别不同的树。我们还可以比较树干的粗细、树皮的纹路，把观察到的不同特点一一记下来，再仔细核对。"
-                : "观察叶子的形状，可以帮助我们辨别不同的树。")
+                : "观察叶子的形状，可以帮助我们辨别不同的树。",
+            pronunciation: "biàn bié",
+            soundMemory: "按两个音节记：biàn（第四声）对应“辨”，bié（第二声）对应“别”。边读边想“分清不同”的意思，再合起来回忆“辨别”的写法。同音不一定同字，还要记住字形和意思。")
         let entry = CoachingIntervention(finding: finding, observation: .unknown, actualMistake: "", strategy: lesson.structure,
             exercises: [.init(kind: .cloze, prompt: "我们需要仔细____两片叶子的不同。", answer: "辨别")], isAI: true, now: .now, lesson: lesson)
         group.targets[0].interventionID = entry.id

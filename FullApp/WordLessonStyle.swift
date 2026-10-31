@@ -136,6 +136,8 @@ struct WordLessonExplanation: View {
     let structure: String
     let example: String
     let translation: String
+    var pronunciation: String? = nil
+    var soundMemory: String? = nil
     var speech: WordLessonSpeech? = nil
     var speechScope = ""
     var speechLanguage: WordLessonSpeechLanguage = .chinese
@@ -145,16 +147,7 @@ struct WordLessonExplanation: View {
                 Text("是什么意思").font(.system(.caption, design: .rounded, weight: .medium)).foregroundStyle(WordLessonPalette.muted)
                 Text(meaning).font(.system(.title2, design: .rounded, weight: .semibold)).lineSpacing(4)
             }
-            if !structure.isEmpty {
-                VStack(alignment: .leading, spacing: 8) {
-                    Label("组成与记忆", systemImage: "pencil.tip")
-                        .font(.system(.caption, design: .rounded, weight: .semibold))
-                        .foregroundStyle(WordLessonPalette.accent)
-                    Text(structure).font(.body).foregroundStyle(WordLessonPalette.ink.opacity(0.82)).lineSpacing(4)
-                }
-                .padding(14).frame(maxWidth: .infinity, alignment: .leading)
-                .background(WordLessonPalette.highlight, in: RoundedRectangle(cornerRadius: 16))
-            }
+            WordLessonMemory(structure: structure, pronunciation: pronunciation, soundMemory: soundMemory)
             if !example.isEmpty {
                 HStack(alignment: .top, spacing: 14) {
                     RoundedRectangle(cornerRadius: 2).fill(WordLessonPalette.accent.opacity(0.35)).frame(width: 3)
@@ -182,6 +175,42 @@ struct WordLessonExplanation: View {
                     }
                 }.fixedSize(horizontal: false, vertical: true)
             }
+        }
+    }
+}
+
+struct WordLessonMemory: View {
+    let structure: String
+    let pronunciation: String?
+    let soundMemory: String?
+
+    var body: some View {
+        let reading = (pronunciation ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        let memory = (soundMemory ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        if !structure.isEmpty || !reading.isEmpty || !memory.isEmpty {
+            VStack(alignment: .leading, spacing: 8) {
+                Label("组成与记忆", systemImage: "pencil.tip")
+                    .font(.system(.caption, design: .rounded, weight: .semibold))
+                    .foregroundStyle(WordLessonPalette.accent)
+                if !structure.isEmpty {
+                    Text(structure).font(.body).foregroundStyle(WordLessonPalette.ink.opacity(0.82)).lineSpacing(4)
+                }
+                if !reading.isEmpty || !memory.isEmpty {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("按读音记").font(.subheadline.weight(.semibold)).foregroundStyle(WordLessonPalette.accent)
+                        if !reading.isEmpty {
+                            Text(reading).font(.body.weight(.semibold)).lineSpacing(4)
+                                .accessibilityIdentifier("targeted.pronunciation")
+                        }
+                        if !memory.isEmpty {
+                            Text(memory).font(.body).foregroundStyle(WordLessonPalette.ink.opacity(0.82)).lineSpacing(4)
+                                .accessibilityIdentifier("targeted.soundMemory")
+                        }
+                    }
+                }
+            }
+            .padding(14).frame(maxWidth: .infinity, alignment: .leading)
+            .background(WordLessonPalette.highlight, in: RoundedRectangle(cornerRadius: 16))
         }
     }
 }

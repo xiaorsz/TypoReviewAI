@@ -20,6 +20,29 @@ private actor TargetedTestTransport: ChatTransport {
     }
 }
 
+private actor NextWordTestTransport: ChatTransport {
+    var requestedWords: [String] = []
+    private var gate: CheckedContinuation<Void, Never>?
+    let held: XCTestExpectation
+    let failSecond: Bool
+    init(held: XCTestExpectation, failSecond: Bool = false) { self.held = held; self.failSecond = failSecond }
+    func release() { gate?.resume(); gate = nil }
+    func complete(messages: [ChatMessage], model: String, apiKey: String) async throws -> ChatReply {
+        let facts = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(try XCTUnwrap(messages.last?.content).utf8)) as? [String: Any])
+        let word = try XCTUnwrap(facts["content"] as? String)
+        requestedWords.append(word)
+        let call = requestedWords.count
+        if call == 2 {
+            await withCheckedContinuation { gate = $0; held.fulfill() }
+            if failSecond { throw LabError.invalid("测试预备下一词失败") }
+        }
+        let lesson = ["meaning": "测试词义", "structure": "", "example": "The word is \(word).",
+                      "exampleTranslation": "这个词是 \(word)。", "question": "根据刚才的释义填写完整单词：____", "answer": word]
+        let content = String(decoding: try JSONSerialization.data(withJSONObject: lesson), as: UTF8.self)
+        return .init(message: .init(role: "assistant", content: content))
+    }
+}
+
 @MainActor private final class TargetedCancelBox {
     weak var coordinator: TargetedCoachCoordinator?
 }
@@ -293,7 +316,8 @@ private actor TargetedTestTransport: ChatTransport {
 
     func testPreparedAILessonAndStartedProgressResumeWithoutGeneratingAgain() async throws {
         let (context, coach, _, url) = try setup()
-        let transport = TargetedTestTransport(response: lessonResponse)
+        let response = lessonResponse.replacingOccurrences(of: "\"structure\":", with: "\"soundMemory\":\"先按有把握的读音分段记，再对照字母回忆完整写法。\",\"structure\":")
+        let transport = TargetedTestTransport(response: response)
         let targeted = TargetedCoachCoordinator(fileURL: url, transport: transport)
         let idResult = await targeted.startGroup(context: context, coach: coach, now: now)
         let id = try XCTUnwrap(idResult)
@@ -304,6 +328,7 @@ private actor TargetedTestTransport: ChatTransport {
         let calls = await transport.calls
         XCTAssertEqual(calls, 1); XCTAssertNil(targeted.error)
         let entry = try XCTUnwrap(targeted.state?.interventions.first)
+        XCTAssertEqual(entry.lesson?.soundMemory, "先按有把握的读音分段记，再对照字母回忆完整写法。")
         try await targeted.approve(entry.id, context: context, now: now)
         let restarted = TargetedCoachCoordinator(fileURL: url, transport: transport)
         let resumedID = await restarted.startGroup(context: context, coach: coach, now: now)
@@ -313,6 +338,154 @@ private actor TargetedTestTransport: ChatTransport {
             parentJudgment: nil, revealed: false, context: context, now: now)
         XCTAssertEqual(restarted.state?.interventions.first?.attempts.first?.correct, false)
         XCTAssertEqual(restarted.report(for: restarted.state!.interventions[0], now: now).state, .awaiting)
+    }
+
+    private func setupNextWord(transport: any ChatTransport) async throws -> (ModelContext, AICoachCoordinator, TargetedCoachCoordinator, CoachingStudyGroup) {
+        let (context, coach, _, url) = try setup()
+        for word in ["apple", "banana", "pear", "grape"] {
+            let item = CoachLab.ReviewItem(type: .englishWord, content: word, prompt: "水果", stage: 2, nextReviewAt: now)
+            context.insert(item)
+            for days in [-4, -3, -1] {
+                context.insert(CoachLab.ReviewRecord(itemID: item.id, reviewedAt: now.addingTimeInterval(Double(days) * 86400),
+                    result: .wrong, mode: .scheduled, oldStage: 2, newStage: 0))
+            }
+        }
+        try context.save()
+        let targeted = TargetedCoachCoordinator(fileURL: url, transport: transport)
+        _ = await targeted.startGroup(context: context, coach: coach, now: now)
+        let group = try XCTUnwrap(targeted.state?.groups.first)
+        await targeted.prepareLesson(groupID: group.id, targetID: group.targets[0].id, context: context, coach: coach, apiKey: "test-only", now: now)
+        XCTAssertNil(targeted.error)
+        return (context, coach, targeted, group)
+    }
+
+    func testOnlyNextWordIsPreparedWhileCurrentAnswerRemainsUsableAndSaved() async throws {
+        let held = expectation(description: "下一词请求进行中")
+        let transport = NextWordTestTransport(held: held)
+        let (context, coach, targeted, group) = try await setupNextWord(transport: transport)
+        let task = try XCTUnwrap(targeted.prefetchNextLesson(groupID: group.id, after: group.targets[0].id,
+            context: context, coach: coach, apiKey: "test-only", now: now))
+        await fulfillment(of: [held], timeout: 3)
+        XCTAssertFalse(targeted.isGenerating, "后台预备不能禁用当前词的作答")
+        XCTAssertEqual(targeted.prefetchingTargetID, group.targets[1].id)
+        let current = try XCTUnwrap(targeted.state?.interventions.first)
+        try await targeted.startLesson(current.id, context: context)
+        try await targeted.answer(current.id, exerciseID: current.exercises[0].id, response: current.content,
+            parentJudgment: nil, revealed: false, context: context, now: now)
+        await transport.release(); await task.value
+        XCTAssertEqual(targeted.state?.interventions.count, 2)
+        XCTAssertEqual(targeted.state?.interventions.first?.attempts.count, 1, "后台返回不能覆盖当前作答")
+        XCTAssertNotNil(targeted.state?.groups.first?.targets[1].interventionID)
+        XCTAssertNil(targeted.state?.groups.first?.targets[2].interventionID, "不能自动预备再后面的词")
+        var requests = await transport.requestedWords
+        XCTAssertEqual(requests, Array(group.targets.prefix(2)).map(\.content))
+        targeted.prefetchNextLesson(groupID: group.id, after: group.targets[0].id, context: context, coach: coach, apiKey: "test-only", now: now)
+        requests = await transport.requestedWords; XCTAssertEqual(requests.count, 2, "已经准备的下一词不重复生成")
+        let nextTask = try XCTUnwrap(targeted.prefetchNextLesson(groupID: group.id, after: group.targets[1].id,
+            context: context, coach: coach, apiKey: "test-only", now: now))
+        await nextTask.value
+        requests = await transport.requestedWords
+        XCTAssertEqual(requests, Array(group.targets.prefix(3)).map(\.content))
+        XCTAssertNil(targeted.state?.groups.first?.targets[3].interventionID)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<CoachLab.ReviewRecord>()), 15)
+        XCTAssertEqual(try context.fetchCount(FetchDescriptor<ReviewDailyPlan>()), 0)
+    }
+
+    func testEnteringNextWordSharesTheInFlightRequest() async throws {
+        let held = expectation(description: "下一词请求进行中")
+        let transport = NextWordTestTransport(held: held)
+        let (context, coach, targeted, group) = try await setupNextWord(transport: transport)
+        let task = try XCTUnwrap(targeted.prefetchNextLesson(groupID: group.id, after: group.targets[0].id,
+            context: context, coach: coach, apiKey: "test-only", now: now))
+        await fulfillment(of: [held], timeout: 3)
+        let foreground = Task {
+            await targeted.prepareLesson(groupID: group.id, targetID: group.targets[1].id, context: context, coach: coach, apiKey: "test-only", now: now)
+        }
+        await transport.release(); await foreground.value; await task.value
+        let requests = await transport.requestedWords
+        XCTAssertEqual(requests.count, 2)
+        XCTAssertEqual(targeted.state?.interventions.count, 2)
+        XCTAssertNil(targeted.prefetchingTargetID)
+    }
+
+    func testPrefetchFailureIsSpecificToNextWordAndAllowsExplicitRetry() async throws {
+        let held = expectation(description: "下一词请求进行中")
+        let transport = NextWordTestTransport(held: held, failSecond: true)
+        let (context, coach, targeted, group) = try await setupNextWord(transport: transport)
+        let task = try XCTUnwrap(targeted.prefetchNextLesson(groupID: group.id, after: group.targets[0].id,
+            context: context, coach: coach, apiKey: "test-only", now: now))
+        await fulfillment(of: [held], timeout: 3)
+        await transport.release(); await task.value
+        XCTAssertNil(targeted.error, "下一词失败不应替换当前词或显示成当前词出错")
+        XCTAssertNotNil(targeted.lessonPreparationErrors[group.targets[1].id])
+        XCTAssertNil(targeted.prefetchNextLesson(groupID: group.id, after: group.targets[0].id,
+            context: context, coach: coach, apiKey: "test-only", now: now), "失败后不自动反复请求")
+        let current = try XCTUnwrap(targeted.state?.interventions.first)
+        try await targeted.startLesson(current.id, context: context)
+        await targeted.prepareLesson(groupID: group.id, targetID: group.targets[1].id, context: context, coach: coach, apiKey: "test-only", now: now)
+        XCTAssertNil(targeted.lessonPreparationErrors[group.targets[1].id])
+        XCTAssertEqual(targeted.state?.interventions.count, 2)
+        let requests = await transport.requestedWords; XCTAssertEqual(requests.count, 3)
+    }
+
+    func testLatePrefetchIsRejectedAfterCancellationRevocationRestoreOrSourceUndo() async throws {
+        for mode in ["cancel", "revoke", "restore", "undo"] {
+            let held = expectation(description: "下一词请求进行中：" + mode)
+            let transport = NextWordTestTransport(held: held)
+            let (context, coach, targeted, group) = try await setupNextWord(transport: transport)
+            let task = try XCTUnwrap(targeted.prefetchNextLesson(groupID: group.id, after: group.targets[0].id,
+                context: context, coach: coach, apiKey: "test-only", now: now))
+            await fulfillment(of: [held], timeout: 3)
+            switch mode {
+            case "cancel": targeted.cancel()
+            case "revoke":
+                var config = try XCTUnwrap(coach.store).state.configuration
+                config.isEnabled = false; try coach.store?.configure(config)
+            case "restore":
+                targeted.dataChanged(action: "restore", context: context, datasetID: coach.store!.state.datasetID, subject: .english)
+            default:
+                let record = try XCTUnwrap(context.fetch(FetchDescriptor<CoachLab.ReviewRecord>()).first { $0.itemID == group.targets[1].id })
+                context.delete(record); try context.save()
+            }
+            await transport.release(); await task.value
+            XCTAssertFalse(targeted.state?.interventions.contains { $0.itemID == group.targets[1].id } == true, mode)
+            XCTAssertNil(targeted.prefetchingTargetID)
+            targeted.cancel()
+        }
+    }
+
+    func testStudyPresentationResolvesWordAndPageBeforeFirstFrame() throws {
+        let items = ["one", "two"].map { CoachCore.ReviewItem(type: "单词", content: $0, now: now) }
+        let records = items.flatMap { item in
+            [-4, -3, -1].map { days in
+                CoachCore.ReviewRecord(itemID: item.id, correct: false, oldStage: 2, newStage: 0,
+                                      now: now.addingTimeInterval(Double(days) * 86400))
+            }
+        }
+        let findings = TargetedCoaching.findings(items: items, records: records, subject: .english, now: now)
+        var group = CoachingStudyGroup(findings: findings, now: now)
+        var entry = try TargetedCoaching.basicLesson(findings[0], meaning: "示例释义", now: now)
+        group.targets[0].interventionID = entry.id
+        var presentation = WordStudyPresentation(group: group, interventions: [entry])
+        XCTAssertEqual(presentation.id, group.id)
+        XCTAssertEqual(presentation.index, 0)
+        XCTAssertEqual(presentation.page, .lesson, "缓存讲解第一帧直接显示讲解，不经过初始化转圈")
+
+        entry.approve(now: now)
+        presentation = WordStudyPresentation(group: group, interventions: [entry])
+        XCTAssertEqual(presentation.page, .quiz, "退出重进已开始的词，第一帧就应恢复作答页")
+        try entry.answer(exerciseID: entry.exercises[0].id, response: entry.content, parentJudgment: nil, revealed: false, now: now)
+        group.usesBasic = true
+        presentation = WordStudyPresentation(group: group, interventions: [entry])
+        XCTAssertEqual(presentation.index, 1, "续学直接定位后面的词，不能先展示第一词再跳转")
+        XCTAssertEqual(presentation.page, .lesson)
+        XCTAssertTrue(presentation.usesBasic)
+        XCTAssertEqual(WordStudyPresentation.page(for: entry), .result, "切换回已完成词时同步定位结果页")
+
+        group.targets[1].skipped = true
+        presentation = WordStudyPresentation(group: group, interventions: [entry])
+        XCTAssertEqual(presentation.index, group.targets.count)
+        XCTAssertEqual(presentation.page, .lesson)
     }
 
     func testLessonFailureCanUseExplicitBasicFallbackAndPreservesGroup() async throws {

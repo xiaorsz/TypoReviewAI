@@ -151,6 +151,62 @@ final class TargetedCoachingTests: XCTestCase {
         XCTAssertEqual(try TargetedCoaching.lessonDraft(noStructure, finding: finding, now: now).lesson?.structure, "")
     }
 
+    func testSoundMemorySurvivesSavingForChineseAndEnglishWithoutChangingAnswerRules() throws {
+        let examples = [
+            ("词语", "辨别", "区分不同的事物。", "biàn bié", "biàn 对应“辨”，bié 对应“别”；联系“分清不同”的意思记住写法。", "辨别两片叶子的不同。", "", "仔细____两片叶子的不同。"),
+            ("单词", "banana", "香蕉。", "/bəˈnæn.ə/（美式）", "按三个音节 /bə/—/næn/—/ə/ 记，第二个音节重读，再对照 banana 的拼写合起来回忆。", "I eat a banana.", "我吃一根香蕉。", "I eat a ____."),
+        ]
+        for (type, word, meaning, pronunciation, memory, example, translation, question) in examples {
+            let item = ReviewItem(type: type, content: word, now: now)
+            let records = [-4, -3, -1].map { record(item, days: $0) }
+            let finding = try XCTUnwrap(TargetedCoaching.findings(items: [item], records: records, subject: type == "单词" ? .english : .chinese, now: now).first)
+            let payload = ["meaning": meaning, "structure": "", "pronunciation": " \(pronunciation) ", "soundMemory": memory,
+                           "example": example, "exampleTranslation": translation, "question": question, "answer": word]
+            let raw = String(decoding: try JSONSerialization.data(withJSONObject: payload), as: UTF8.self)
+            var draft = try TargetedCoaching.lessonDraft(raw, finding: finding, now: now)
+            XCTAssertEqual(draft.lesson?.pronunciation, pronunciation)
+            XCTAssertEqual(draft.lesson?.soundMemory, memory)
+            XCTAssertTrue(draft.strategy.contains(memory), "后续调整练法时应保留之前用过的读音记忆方法")
+            XCTAssertEqual(draft.exercises.count, 1)
+            XCTAssertFalse(draft.exercises[0].prompt.contains(word), "记忆提示不能泄露到作答题干")
+            draft.approve(now: now)
+            try draft.answer(exerciseID: draft.exercises[0].id, response: word, parentJudgment: nil, revealed: false, now: now)
+            var state = TargetedCoachingState(datasetID: UUID()); state.interventions = [draft]
+            let restored = try TargetedCoachingState.decoder().decode(TargetedCoachingState.self, from: TargetedCoachingState.encoder().encode(state))
+            XCTAssertEqual(restored, state)
+            XCTAssertTrue(restored.interventions[0].attempts[0].correct)
+        }
+    }
+
+    func testOldLessonsWithoutSoundMemoryRemainReadableAndBasicLessonsDoNotInventIt() throws {
+        let (_, _, finding) = try fixture()
+        let draft = try TargetedCoaching.lessonDraft(lessonJSON, finding: finding, now: now)
+        let oldLesson = try XCTUnwrap(draft.lesson)
+        let data = try JSONEncoder().encode(oldLesson)
+        let object = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        XCTAssertNil(object["pronunciation"]); XCTAssertNil(object["soundMemory"])
+        XCTAssertEqual(try JSONDecoder().decode(CoachingWordLesson.self, from: data), oldLesson)
+        let basic = try TargetedCoaching.basicLesson(finding, meaning: "葡萄牙", now: now)
+        XCTAssertNil(basic.lesson?.pronunciation); XCTAssertNil(basic.lesson?.soundMemory)
+    }
+
+    func testSoundMemoryRejectsOversizedOrWrongTypeFieldsAndAcceptsMissingOrEmpty() throws {
+        let (_, _, finding) = try fixture()
+        let original = try XCTUnwrap(JSONSerialization.jsonObject(with: Data(lessonJSON.utf8)) as? [String: Any])
+        for (field, invalid) in [("pronunciation", String(repeating: "音", count: 81) as Any),
+                                 ("soundMemory", String(repeating: "音", count: 201) as Any),
+                                 ("soundMemory", ["invalid"] as Any)] {
+            var payload = original; payload[field] = invalid
+            let raw = String(decoding: try JSONSerialization.data(withJSONObject: payload), as: UTF8.self)
+            XCTAssertThrowsError(try TargetedCoaching.lessonDraft(raw, finding: finding, now: now))
+        }
+        for value: Any in [NSNull(), "  "] {
+            var payload = original; payload["pronunciation"] = value; payload["soundMemory"] = value
+            let raw = String(decoding: try JSONSerialization.data(withJSONObject: payload), as: UTF8.self)
+            XCTAssertNoThrow(try TargetedCoaching.lessonDraft(raw, finding: finding, now: now))
+        }
+    }
+
     func testFiveWordGroupsThenRemainingTwoAndNoSameDayDuplicates() throws {
         var items: [ReviewItem] = [], records: [ReviewRecord] = []
         for word in ["one", "two", "three", "four", "five", "six", "seven"] {

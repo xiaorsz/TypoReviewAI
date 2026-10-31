@@ -3,13 +3,35 @@ import SwiftData
 import AVFoundation
 import CoachCore
 
-private struct StudyRoute: Identifiable { let id: UUID }
+/// Resolve the resume position before presenting so the first frame is the right word/page.
+struct WordStudyPresentation: Identifiable {
+    enum Page: Equatable { case lesson, quiz, result }
+    let id: UUID
+    let index: Int
+    let page: Page
+    let usesBasic: Bool
+
+    init(group: CoachingStudyGroup, interventions: [CoachingIntervention]) {
+        id = group.id
+        let startIndex = group.firstUnfinished(in: interventions) ?? group.targets.count
+        index = startIndex
+        let entry = group.targets.indices.contains(startIndex)
+            ? interventions.first { $0.id == group.targets[startIndex].interventionID } : nil
+        page = Self.page(for: entry)
+        usesBasic = group.usesBasic == true
+    }
+
+    static func page(for intervention: CoachingIntervention?) -> Page {
+        if intervention?.attempts.isEmpty == false { return .result }
+        return intervention?.approvedAt != nil ? .quiz : .lesson
+    }
+}
 
 struct TargetedCoachView: View {
     @Environment(TargetedCoachCoordinator.self) private var targeted
     @Environment(AICoachCoordinator.self) private var coach
     @Environment(\.modelContext) private var context
-    @State private var route: StudyRoute?
+    @State private var route: WordStudyPresentation?
     @State private var showingHistory = false
 
     private var subject: Subject { coach.store?.state.configuration.subject ?? .all }
@@ -61,7 +83,10 @@ struct TargetedCoachView: View {
         .toolbarBackground(WordLessonPalette.background, for: .navigationBar)
         .task { await refresh() }.refreshable { await refresh() }
         .navigationDestination(isPresented: $showingHistory) { WordLearningHistoryView() }
-        .fullScreenCover(item: $route) { WordStudyGroupView(groupID: $0.id, onClose: { route = nil }) }
+        .fullScreenCover(item: $route) {
+            WordStudyGroupView(presentation: $0, onClose: { route = nil })
+                .presentationBackground(WordLessonPalette.background)
+        }
     }
 
     private var recommendationCard: some View {
@@ -91,7 +116,7 @@ struct TargetedCoachView: View {
                         .font(.subheadline).foregroundStyle(WordLessonPalette.muted)
                 }
                 Button {
-                    if let active { route = StudyRoute(id: active.id) } else { start() }
+                    if let active { open(active) } else { start() }
                 } label: {
                     WordLessonActionLabel(title: active != nil ? "继续学习" : (targeted.state?.groups.isEmpty == false ? "再学 5 个" : "开始学习"))
                 }
@@ -113,7 +138,13 @@ struct TargetedCoachView: View {
         #endif
     }
     private func start() {
-        Task { if let id = await targeted.startGroup(context: context, coach: coach) { route = StudyRoute(id: id) } }
+        Task {
+            if let id = await targeted.startGroup(context: context, coach: coach),
+               let group = targeted.state?.groups.first(where: { $0.id == id }) { open(group) }
+        }
+    }
+    private func open(_ group: CoachingStudyGroup) {
+        route = WordStudyPresentation(group: group, interventions: targeted.state?.interventions ?? [])
     }
 }
 
@@ -121,7 +152,6 @@ private struct WordStudyGroupView: View {
     @Environment(TargetedCoachCoordinator.self) private var targeted
     @Environment(AICoachCoordinator.self) private var coach
     @Environment(\.modelContext) private var context
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var speech = WordLessonSpeech()
     let groupID: UUID
@@ -129,16 +159,22 @@ private struct WordStudyGroupView: View {
     @State private var nextGroupID: UUID?
     private var currentGroupID: UUID { nextGroupID ?? groupID }
     @State private var index = 0
-    @State private var initialized = false
-    private enum LearningPage { case lesson, quiz, result }
+    private typealias LearningPage = WordStudyPresentation.Page
     @State private var page: LearningPage = .lesson
-    @State private var returningToWord: UUID?
+    @State private var preparationFinishedFor: UUID?
     @State private var drafts: [UUID: String] = [:]
     @State private var revisitedAnswers: Set<UUID> = []
     @State private var usingBasic = false
     @State private var response = ""
     @State private var localError: String?
     @FocusState private var inputFocused: Bool
+
+    init(presentation: WordStudyPresentation, onClose: @escaping () -> Void) {
+        groupID = presentation.id; self.onClose = onClose
+        _index = State(initialValue: presentation.index)
+        _page = State(initialValue: presentation.page)
+        _usingBasic = State(initialValue: presentation.usesBasic)
+    }
 
     private var group: CoachingStudyGroup? { targeted.state?.groups.first { $0.id == currentGroupID } }
     private var target: CoachingStudyTarget? {
@@ -156,7 +192,7 @@ private struct WordStudyGroupView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 14) {
-                    if initialized, let group {
+                    if let group {
                         if let target {
                             progress(group)
                             if let intervention {
@@ -169,25 +205,27 @@ private struct WordStudyGroupView: View {
                                 } else if let lesson = intervention.lesson {
                                     lessonPage(target, intervention: intervention, lesson: lesson)
                                 }
-                            } else if targeted.isGenerating {
+                            } else if targeted.isGenerating || targeted.prefetchingTargetID == target.id || preparationFinishedFor != target.id {
                                 VStack(alignment: .leading, spacing: 22) {
                                     WordLessonBook()
                                     Text("把这个词，讲明白一点。")
                                         .font(.system(.title2, design: .rounded, weight: .bold))
-                                    ProgressView("正在准备这个词的讲解…").tint(WordLessonPalette.accent)
+                                    ProgressView(usingBasic ? "正在准备基础讲解…" : "正在准备这个词的讲解…").tint(WordLessonPalette.accent)
                                     Button("停止准备") { targeted.cancel() }.font(.subheadline)
                                 }.modifier(WordLessonSurface())
                             } else {
-                                unavailable(targeted.error ?? "这一词还没准备好，稍后再试试吧。")
+                                unavailable(targeted.lessonPreparationErrors[target.id] ?? targeted.error ?? "讲解还没准备好，稍后再试试吧。")
                             }
                             if let localError { Text(localError).font(.subheadline).foregroundStyle(WordLessonPalette.muted) }
                         } else { summary(group) }
-                    } else { ProgressView().tint(WordLessonPalette.accent) }
+                    } else {
+                        Text("学习记录已变化，请返回重新选择。")
+                            .foregroundStyle(WordLessonPalette.muted)
+                    }
                 }
                 .padding(.horizontal, 20).padding(.top, 8).padding(.bottom, 20)
                 .frame(maxWidth: 700, alignment: .leading).frame(maxWidth: .infinity)
                 .disabled(targeted.isLoading || targeted.isSaving)
-                .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: index)
             }
             .scrollDismissesKeyboard(.interactively)
             .background(WordLessonPalette.background.ignoresSafeArea())
@@ -214,20 +252,15 @@ private struct WordStudyGroupView: View {
                     }
                 }
             }
-            .task {
-                guard !initialized, let group else { return }
-                index = group.firstUnfinished(in: targeted.state?.interventions ?? []) ?? group.targets.count
-                usingBasic = group.usesBasic == true; initialized = true
-            }
-            .task(id: initialized ? target?.id : nil) {
-                guard initialized, let target else { return }
-                speech.stop()
-                response = drafts[target.id] ?? ""; localError = nil; inputFocused = false
-                if returningToWord == target.id { page = .lesson; returningToWord = nil }
-                else if intervention?.attempts.isEmpty == false { page = .result }
-                else { page = intervention?.approvedAt != nil ? .quiz : .lesson }
-                if target.interventionID == nil {
+            .task(id: target?.id) {
+                guard let target else { return }
+                if target.interventionID == nil, targeted.lessonPreparationErrors[target.id] == nil {
                     await targeted.prepareLesson(groupID: currentGroupID, targetID: target.id, basic: usingBasic, context: context, coach: coach)
+                }
+                guard !Task.isCancelled, self.target?.id == target.id else { return }
+                preparationFinishedFor = target.id
+                if !usingBasic {
+                    targeted.prefetchNextLesson(groupID: currentGroupID, after: target.id, context: context, coach: coach)
                 }
             }
             .onChange(of: page) { _, _ in speech.stop() }
@@ -269,6 +302,7 @@ private struct WordStudyGroupView: View {
                 }
             }
             WordLessonExplanation(meaning: lesson.meaning, structure: lesson.structure, example: lesson.example, translation: lesson.exampleTranslation,
+                pronunciation: lesson.pronunciation, soundMemory: lesson.soundMemory,
                 speech: speech, speechScope: intervention.id.uuidString, speechLanguage: .forItem(type: intervention.type))
         }.modifier(WordLessonSurface())
     }
@@ -334,13 +368,14 @@ private struct WordStudyGroupView: View {
             .padding(.horizontal, 24).padding(.vertical, 12)
             .frame(maxWidth: 700).frame(maxWidth: .infinity)
             .background(WordLessonPalette.background)
-        } else if initialized, target == nil, group != nil {
+        } else if target == nil, group != nil {
             VStack(spacing: 10) {
                 if !targeted.recommendations.isEmpty {
                     Button {
                         Task {
-                            if let id = await targeted.startGroup(context: context, coach: coach) {
-                                nextGroupID = id; index = 0; page = .lesson; response = ""; localError = nil
+                            if let id = await targeted.startGroup(context: context, coach: coach),
+                               let group = targeted.state?.groups.first(where: { $0.id == id }) {
+                                nextGroupID = id; selectTarget(at: 0, in: group)
                             }
                         }
                     } label: { WordLessonActionLabel(title: "再学 5 个") }
@@ -357,8 +392,14 @@ private struct WordStudyGroupView: View {
 
     private func prepare(basic: Bool) {
         guard let target else { return }
-        usingBasic = basic
-        Task { await targeted.prepareLesson(groupID: currentGroupID, targetID: target.id, basic: basic, context: context, coach: coach) }
+        usingBasic = basic; preparationFinishedFor = nil
+        Task {
+            await targeted.prepareLesson(groupID: currentGroupID, targetID: target.id, basic: basic, context: context, coach: coach)
+            if !Task.isCancelled, self.target?.id == target.id {
+                preparationFinishedFor = target.id
+                if !basic { targeted.prefetchNextLesson(groupID: currentGroupID, after: target.id, context: context, coach: coach) }
+            }
+        }
     }
     private func skip() {
         speech.stop()
@@ -369,7 +410,17 @@ private struct WordStudyGroupView: View {
     private func next() {
         speech.stop()
         if let target { drafts[target.id] = response }
-        inputFocused = false; page = .lesson; localError = nil; index += 1
+        guard let group else { return }
+        selectTarget(at: index + 1, in: group)
+    }
+    private func selectTarget(at position: Int, in group: CoachingStudyGroup, forceLesson: Bool = false) {
+        let nextTarget = group.targets.indices.contains(position) ? group.targets[position] : nil
+        let entry = targeted.state?.interventions.first { $0.id == nextTarget?.interventionID }
+        // Change word and visible page together, rather than correcting the page in a later task.
+        inputFocused = false; localError = nil
+        response = nextTarget.flatMap { drafts[$0.id] } ?? ""
+        page = forceLesson ? .lesson : WordStudyPresentation.page(for: entry)
+        preparationFinishedFor = nil; index = position
     }
     private func exitLearning() {
         speech.stop()
@@ -390,7 +441,7 @@ private struct WordStudyGroupView: View {
                 && targeted.state?.interventions.contains(where: { $0.id == group.targets[position].interventionID && $0.lesson != nil }) == true
         }) {
             targeted.cancel()
-            returningToWord = group.targets[previous].id; page = .lesson; index = previous
+            selectTarget(at: previous, in: group, forceLesson: true)
         } else { exitLearning() }
     }
     private func submit(_ intervention: CoachingIntervention) {
@@ -432,7 +483,7 @@ private struct WordStudyGroupView: View {
                 .background(WordLessonPalette.soft, in: RoundedRectangle(cornerRadius: 20))
             if let lesson = intervention.lesson {
                 Text(lesson.meaning).font(.title3).lineSpacing(5)
-                if !lesson.structure.isEmpty { Text(lesson.structure).font(.body).lineSpacing(5).foregroundStyle(WordLessonPalette.muted) }
+                WordLessonMemory(structure: lesson.structure, pronunciation: lesson.pronunciation, soundMemory: lesson.soundMemory)
             }
         }.modifier(WordLessonSurface())
     }
@@ -529,6 +580,7 @@ private struct WordLearningRecordView: View {
                     }
                     if let lesson = entry.lesson {
                         WordLessonExplanation(meaning: lesson.meaning, structure: lesson.structure, example: lesson.example, translation: lesson.exampleTranslation,
+                            pronunciation: lesson.pronunciation, soundMemory: lesson.soundMemory,
                             speech: speech, speechScope: entry.id.uuidString, speechLanguage: .forItem(type: entry.type))
                             .modifier(WordLessonSurface())
                     } else { Text(entry.strategy).modifier(WordLessonSurface()) }
